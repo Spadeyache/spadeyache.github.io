@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
@@ -29,7 +30,7 @@
           <span class="tab-meta">two videos, 30 seconds</span>
         </button>
         <button id="tab-system" class="section-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-system" tabindex="-1">
-          <span class="tab-title">The system</span>
+          <span class="tab-title">What I build</span>
           <span class="tab-meta">what I designed, one diagram</span>
         </button>
         <button id="tab-stories" class="section-tab" type="button" role="tab" aria-selected="true" aria-controls="panel-stories">
@@ -39,20 +40,19 @@
         <span class="tab-indicator" aria-hidden="true"></span>
       </nav>
 
-      <p class="contact-links"><a href="mailto:kn2847@nyu.edu">kn2847@nyu.edu</a><span aria-hidden="true"> · </span><a href="https://github.com/Spadeyache/FATEN-RCJ26/tree/WorldChamp-Robot">GitHub</a><span aria-hidden="true"> · </span><a href="media/technical-description-paper.pdf">Technical paper</a></p>
-
       <section id="panel-robot" class="tab-panel" role="tabpanel" aria-labelledby="tab-robot" hidden>
         <h2 class="visually-hidden">The robot working</h2>
         <div class="video-grid">
           <figure>
-            <video controls muted playsinline preload="none" aria-label="Robot retrieving a victim and exiting the evacuation zone">
-              <source src="media/video/victim-zone.mov" type="video/quicktime">
-              Your browser does not support this video. <a href="media/video/victim-zone.mov">Download the MOV file.</a>
+            <video controls muted playsinline preload="none" poster="media/video/victim-zone-47.png" aria-label="Robot retrieving a victim and exiting the evacuation zone">
+              <source src="media/video/victim-zone.mp4" type="video/mp4">
+              Your browser does not support this video. <a href="media/video/victim-zone.mp4">Download the MP4 file.</a>
             </video>
-            <figcaption>Retrieving a victim and exiting the evacuation zone.</figcaption>
+            <figcaption>Detecting a victim on-device, picking it up, deploying it, and leaving
+              the room. Perception, manipulation, and navigation running together.</figcaption>
           </figure>
           <figure>
-            <video controls muted playsinline preload="none" poster="media/video/slope-line-following.jpeg" aria-label="Robot following a line from flat ground onto a slope">
+            <video controls muted playsinline preload="none" poster="media/video/slope-line-following-first.png" aria-label="Robot following a line from flat ground onto a slope">
               <source src="media/video/slope-line-following.mp4" type="video/mp4">
               Your browser does not support this video. <a href="media/video/slope-line-following.mp4">Download the MP4 file.</a>
             </video>
@@ -62,7 +62,7 @@
       </section>
 
       <section id="panel-system" class="tab-panel" role="tabpanel" aria-labelledby="tab-system" hidden>
-        <h2 class="visually-hidden">The system</h2>
+        <h2 class="visually-hidden">The System I build</h2>
         <figure class="system-figure">
           <img src="media/img/electronics-stack.png" width="6043" height="2925" loading="lazy" alt="Electronics architecture showing the robot's sensors, controllers, actuators, power, and communication buses">
         </figure>
@@ -109,5 +109,17 @@
 
     <aside class="right-blank" aria-hidden="true"></aside>
   </div>
+
+  <nav class="social-dock" aria-label="Contact links">
+    <a class="social-link" href="mailto:kn2847@nyu.edu" aria-label="Email Kent Nakai">
+      <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+    </a>
+    <a class="social-link" href="https://github.com/Spadeyache/FATEN-RCJ26/tree/WorldChamp-Robot" aria-label="Kent Nakai on GitHub">
+      <i class="bi bi-github" aria-hidden="true"></i>
+    </a>
+    <a class="social-link" href="https://www.linkedin.com/in/kent-nakai/" aria-label="Kent Nakai on LinkedIn">
+      <i class="bi bi-linkedin" aria-hidden="true"></i>
+    </a>
+  </nav>
 </body>
 </html>
