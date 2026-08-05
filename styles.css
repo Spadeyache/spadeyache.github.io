@@ -56,16 +56,10 @@ a:hover, a:focus-visible { color: #31583f; }
 .left-column {
   position: relative;
   z-index: 2;
-  width: 52%;
+  width: 100%;
   min-height: 100vh;
-  padding: calc(var(--topbar-height) + 54px) 42px 124px;
-  background: var(--bg);
-}
-
-.right-blank {
-  position: fixed;
-  z-index: 0;
-  inset: var(--topbar-height) 0 0 52%;
+  margin: 0 auto;
+  padding: calc(var(--topbar-height) + 54px) 42px 124px 100px;
   background: var(--bg);
 }
 
@@ -74,7 +68,7 @@ a:hover, a:focus-visible { color: #31583f; }
   width: 100%;
   max-width: 680px;
   margin-right: auto;
-  margin-left: auto;
+  margin-left: 0;
 }
 
 .introduction {
@@ -89,7 +83,7 @@ a:hover, a:focus-visible { color: #31583f; }
   position: relative;
   width: 100%;
   max-width: 680px;
-  margin: 24px auto 0;
+  margin: 24px 0 0;
 }
 
 .section-tab {
@@ -153,7 +147,7 @@ a:hover, a:focus-visible { color: #31583f; }
   transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.tab-panel { margin: 54px auto 0; }
+.tab-panel { margin: 54px 0 0; }
 .tab-panel[hidden] { display: none; }
 
 .video-grid {
@@ -259,7 +253,7 @@ code {
 }
 
 @media (max-width: 1100px) {
-  .left-column { padding-right: 30px; padding-left: 30px; }
+  .left-column { padding-right: 30px; padding-left: 100px; }
   .video-grid { grid-template-columns: 1fr; gap: 30px; }
 }
 
@@ -270,7 +264,6 @@ code {
     width: 100%;
     padding: calc(var(--topbar-height) + 32px) 20px 112px;
   }
-  .right-blank { display: none; }
   .introduction { font-size: 17px; }
   .section-tabs { margin-top: 24px; }
   .section-tab {
