@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kent Nakai builds autonomous robots end to end: mechanical design, PCBs, firmware, and on-device inference.">
+  <title>Kent Nakai — Autonomous robotics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body id="top">
+  <header class="topbar">
+    <a class="brand" href="#top">Kent Nakai</a>
+  </header>
+
+  <div class="site-shell">
+    <main class="left-column">
+      <section class="introduction" aria-label="Introduction">
+        <p>I'm a senior in Computer Engineering at NYU Tandon. I've been building robots end to end since I was nine: mechanical design, PCBs, firmware, and on-device inference.</p>
+        <p>I want to work on why that keeps being so hard. A robot that works today might not tomorrow. The same is true of the next unit built to the same drawing. The machine changed, and the software has no way to know it.</p>
+      </section>
+
+      <nav class="section-tabs" role="tablist" aria-label="Research evidence">
+        <button id="tab-robot" class="section-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-robot" tabindex="-1">
+          <span class="tab-title">The robot working</span>
+          <span class="tab-meta">two videos, 30 seconds</span>
+        </button>
+        <button id="tab-system" class="section-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-system" tabindex="-1">
+          <span class="tab-title">The system</span>
+          <span class="tab-meta">what I designed, one diagram</span>
+        </button>
+        <button id="tab-stories" class="section-tab" type="button" role="tab" aria-selected="true" aria-controls="panel-stories">
+          <span class="tab-title">Three times something broke</span>
+          <span class="tab-meta">the part I'd read first</span>
+        </button>
+        <span class="tab-indicator" aria-hidden="true"></span>
+      </nav>
+
+      <p class="contact-links"><a href="mailto:kn2847@nyu.edu">kn2847@nyu.edu</a><span aria-hidden="true"> · </span><a href="https://github.com/Spadeyache/FATEN-RCJ26/tree/WorldChamp-Robot">GitHub</a><span aria-hidden="true"> · </span><a href="media/technical-description-paper.pdf">Technical paper</a></p>
+
+      <section id="panel-robot" class="tab-panel" role="tabpanel" aria-labelledby="tab-robot" hidden>
+        <h2 class="visually-hidden">The robot working</h2>
+        <div class="video-grid">
+          <figure>
+            <video controls muted playsinline preload="none" aria-label="Robot retrieving a victim and exiting the evacuation zone">
+              <source src="media/video/victim-zone.mov" type="video/quicktime">
+              Your browser does not support this video. <a href="media/video/victim-zone.mov">Download the MOV file.</a>
+            </video>
+            <figcaption>Retrieving a victim and exiting the evacuation zone.</figcaption>
+          </figure>
+          <figure>
+            <video controls muted playsinline preload="none" poster="media/video/slope-line-following.jpeg" aria-label="Robot following a line from flat ground onto a slope">
+              <source src="media/video/slope-line-following.mp4" type="video/mp4">
+              Your browser does not support this video. <a href="media/video/slope-line-following.mp4">Download the MP4 file.</a>
+            </video>
+            <figcaption>Following a line across the transition between flat ground and a slope.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="panel-system" class="tab-panel" role="tabpanel" aria-labelledby="tab-system" hidden>
+        <h2 class="visually-hidden">The system</h2>
+        <figure class="system-figure">
+          <img src="media/img/electronics-stack.png" width="6043" height="2925" loading="lazy" alt="Electronics architecture showing the robot's sensors, controllers, actuators, power, and communication buses">
+        </figure>
+        <p>I designed the electronics stack myself: power distribution, the custom PCB, the connections between compute and control, and the serial protocol that joined them. The diagram follows the system from sensors and the K230D inference board through the controller to the motors and actuators.</p>
+      </section>
+
+      <section id="panel-stories" class="tab-panel stories" role="tabpanel" aria-labelledby="tab-stories">
+        <article class="story">
+          <h2>The model wasn't broken. The measurement was.</h2>
+          <p>Getting a custom object detector onto a K230D was my first time working with this microprocessor. Flashing and running the vendor demo was easy. MobileNet-SSDv2 Lite ran without trouble.</p>
+          <p>I trained my own MobileNet and had ONNX output in about two days. Converting it to <code>.kmodel</code> was where it stopped. I tried PTQ through the official repository and many combinations of compile options. None worked. I learned about QAT here. After about three days on MobileNet, I pivoted to YOLOv8n because it had more community resources and had been verified on the K230D. The work ran from August through March, interleaved with the rest of the robot development.</p>
+          <p>I collected 200 images on the real robot, confirmed ONNX performance, converted the model to <code>.kmodel</code>, and dropped it into the demo code. Nothing. I flashed MicroPython, checked the nncase version, matched dependency versions to it, and got float-to-float conversion working in one day. Adding PTQ produced nonsense.</p>
+          <p>I tried AI Cube and other repositories. AI Cube did not expose every compile option, so I moved to the lowest-level controllable code available. PTQ output produced visible boxes, but they were scattered and badly misplaced.</p>
+          <p>I then spent two days verifying that the K230 simulator and the physical K230D behaved the same. I used a known-working demo YOLO model, passed identical inputs to both, compared the results, and checked input shape handling.</p>
+          <p>Once that comparison was trustworthy, I scripted an automated sweep. It varied compile options across dependency versions that others had reported working, then compared simulator results to find sane output. I tried three configurations per model first to check viability, then every option on the survivors.</p>
+          <p>I evaluated thirteen quantized builds against 78 ground truths across 50 validation images. A float32 reference build confirmed that the architecture and decoder were correct, isolating quantization as the only failure mode.</p>
+          <p>Two findings followed. The <code>recall = 0</code> readings that had sent me down several dead ends were an artifact of the nncase 2.9.0 simulator mis-executing the YOLOv8 DFL head. Upgrading the host compiler and simulator to 2.11.0, without touching the on-device runtime, made the same kmodel files report their real performance. The models had been fine. The instrument was wrong.</p>
+          <p>The smaller finding was that a 128-image calibration set scored slightly worse than a 74-image one. PTQ accuracy plateaus, and depends on which images are picked rather than how many.</p>
+          <p>The final build used int16 activations and uint8 weights. It reached r@0.05 of 1.00, r@0.4 of 0.970, and avg_bsi 0.732, matching the float reference on both geometry and single-best ranking, at 260KB over the u8/u8 build. It ran 8 classes at about 27fps.</p>
+        </article>
+
+        <article class="story">
+          <h2>The suspension was eating the input.</h2>
+          <p>Slopes are the hardest part of RoboCup Rescue Line. Our four-wheel-drive robot slid on inclines at the same gains that worked on flat ground.</p>
+          <p>I started from why. On a slope, gravity pulls the robot into the kinetic friction range, so it slides rather than grips. Rebuilding was not an option under time pressure. I wanted three-wheel drive with a free-spinning rear wheel, so the question became whether I could control the rotational axis instead.</p>
+          <p>I ran differential tests—<code>100,100,0,0</code> and variants—and found that the suspension was absorbing the rotational energy. I removed that effect by bringing the suspension's pivot axis parallel to the tire height, then confirmed it was gone. Only then was the measurement clean enough to work with.</p>
+          <p>I reasoned about it with a friction circle, separating static and kinetic regions per tire under combined gravity and motor force.</p>
+          <p>What the runs told us was to keep the robot climbing as much as possible, which meant keeping the rotational axis on the uphill side. I hardcoded one state first—driving sideways, down-left—then started generalizing it to a function of roll and pitch.</p>
+          <p>I never finished that generalization. Competition timing forced us to keep every state hardcoded, and I don't know whether the generalized version would have worked.</p>
+          <p>Line following used the same principle, with an asymmetric PID holding the rotational axis uphill.</p>
+          <p>We maintained the same speed on slopes as on flat ground, with roughly 95% no-derail excluding edge cases where slopes combined with other tasks. Across three to four days of competition running, it derailed once.</p>
+        </article>
+
+        <article class="story">
+          <h2>Bringing up a new robot, one layer at a time.</h2>
+          <p>Moving software onto a new robot with the same hardware stack started with updating the pin configuration for anything that changed, then testing one subsystem at a time.</p>
+          <p>For line following, I checked the raw RGB readings for consistency. I checked that HSV values matched the colors we actually saw. I confirmed detection worked before touching anything downstream.</p>
+          <p>This was only possible because detection and operation were separate layers, each with one job. When something broke, I could ask which layer rather than read the whole system.</p>
+          <p>Blue gain ran high on our sensor because silicon quantum efficiency falls off at short wavelengths, and green dominates the Bayer pattern because human vision is most sensitive there. AEC, AGC, and white balance all had to be understood and disabled before manual scaling of the sensor range was reliable.</p>
+          <p>One finding, stated and not chased: the cheaper of our two cameras returned different starting values on every boot, even with auto-adjustment disabled.</p>
+        </article>
+      </section>
+    </main>
+
+    <aside class="right-blank" aria-hidden="true"></aside>
+  </div>
+</body>
+</html>
