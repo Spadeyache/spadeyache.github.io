@@ -20,17 +20,28 @@
   <div class="site-shell">
     <main class="left-column">
       <section class="introduction" aria-label="Introduction">
-        <p>I'm an undergrad in Computer Engineering at NYU Tandon. I want to build robots whose movement is reproducible.</p>
-        <p>Today that's robots are optimized by hand. Engineers estimate the range a robot will encounter, including part tolerances, sensor drift, and the room, then tune constants until it survives that range. Outside it, the robot fails and someone tunes again.</p>
+        <!-- <p>I'm an undergrad in Computer Engineering at NYU Tandon. I want to build robots whose movement is reproducible.</p>
+        <p>Today they are tuned by hand. Engineers estimate the range a robot will encounter, including part tolerances, sensor drift, and the room, then tune constants until it survives that range. Outside it, the robot fails and someone tunes again.</p>
         <p>The code never changed. The robot did, and the room did. The code has no way to know that.</p>
-        <p>I've built robots since I was nine. Mechanical design, PCBs, firmware, on-device inference. It started with block code telling the robot to go forward and watching it go left, and it hasn't stopped. At RoboCup in Incheon this year, what I built existed to absorb one axis of that variation: lighting, floor, and dgredation. It worked, and it was still tuning. I've never had to answer the harder version, whether the same code holds when the machine changes.</p>
-        <p>That's the question I want to work on.code holds when the machine itself changes.</p>
+        <p>I've built robots since I was nine. Mechanical design, PCBs, firmware, on-device inference. It started with block code telling the robot to go forward and watching it go left, and it hasn't stopped. At RoboCup in Incheon this year, what I built existed to absorb one axis of that variation: lighting, floor, and degradation. It worked, and it was still tuning. I've never had to answer the harder version, whether the same code holds when the machine changes.</p> -->
+        <!-- <p>That's the question I want to work on.code holds when the machine itself changes.</p> -->
+
+        
+        <p>I'm an undergrad in Computer Engineering at NYU Tandon. I want to build robots whose movement is reproducible.</p>
+
+        <p>Today robots are tuned by hand. Engineers estimate the range a robot will encounter, from part tolerances to sensor drift to the room, then tune constants until it survives that range. Outside it, the robot fails and someone tunes again.</p>
+        
+        <p>The code never changed. The robot did, and the room did. The code has no way to know that.</p>
+        
+        <p>I've built robots since I was nine. Mechanical design, PCBs, firmware, on-device inference. It started with block code telling the robot to go forward and watching it go left, and it hasn't stopped. At RoboCup in Incheon this year, I attacked one axis of that variation at every layer. Lighting, floor, degradation. It worked, and I was still tuning it by hand.</p>
+
+        <p>I want to solve this. Robots that adapt on their own, not just as they wear down over time, but when the code moves to a different machine.</p>
       </section>
 
       
 
       <nav class="section-tabs" role="tablist" aria-label="Research evidence">
-        <button id="tab-robot" class="section-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-robot" tabindex="-1">
+        <button id="tab-robot" class="section-tab" type="button" role="tab" aria-selected="true" aria-controls="panel-robot">
           <span class="tab-title">The robot working</span>
           <span class="tab-meta">two videos, 30 seconds</span>
         </button>
@@ -38,18 +49,18 @@
           <span class="tab-title">What I build</span>
           <span class="tab-meta">what I designed, one diagram</span>
         </button>
-        <button id="tab-stories" class="section-tab" type="button" role="tab" aria-selected="true" aria-controls="panel-stories">
+        <button id="tab-stories" class="section-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-stories" tabindex="-1">
           <span class="tab-title">Three times something broke</span>
           <span class="tab-meta">the part I'd read first</span>
         </button>
         <span class="tab-indicator" aria-hidden="true"></span>
       </nav>
 
-      <section id="panel-robot" class="tab-panel" role="tabpanel" aria-labelledby="tab-robot" hidden>
+      <section id="panel-robot" class="tab-panel" role="tabpanel" aria-labelledby="tab-robot">
         <h2 class="visually-hidden">The robot working</h2>
         <div class="video-grid">
           <figure>
-            <video controls muted playsinline preload="none" poster="media/video/victim-zone-47.png" aria-label="Robot retrieving a victim and exiting the evacuation zone">
+            <video controls playsinline preload="none" poster="media/video/victim-zone-47.png" aria-label="Robot retrieving a victim and exiting the evacuation zone">
               <source src="media/video/victim-zone.mp4" type="video/mp4">
               Your browser does not support this video. <a href="media/video/victim-zone.mp4">Download the MP4 file.</a>
             </video>
@@ -72,43 +83,72 @@
           <img src="media/img/electronics-stack.png" width="6043" height="2925" loading="lazy" alt="Electronics architecture showing the robot's sensors, controllers, actuators, power, and communication buses">
         </figure>
         <p>I designed the electronics stack myself: power distribution, the custom PCB, the connections between compute and control, and the serial protocol that joined them. The diagram follows the system from sensors and the K230D inference board through the controller to the motors and actuators.</p>
+        <figure class="cad-showcase">
+          <figcaption class="cad-title">Recent robots I built</figcaption>
+          <div class="cad-row" aria-label="Four recent robot CAD designs">
+            <img src="media/img/CAD_BR-transparent.png" width="1268" height="1240" loading="lazy" alt="BR robot CAD design">
+            <img src="media/img/CAD_KR-transparent.png" width="1533" height="1026" loading="lazy" alt="KR robot CAD design">
+            <img src="media/img/CAD_NL-transparent.png" width="1409" height="1117" loading="lazy" alt="NL robot CAD design">
+            <img src="media/img/CAD_US-transparent.png" width="1611" height="976" loading="lazy" alt="US robot CAD design">
+          </div>
+        </figure>
       </section>
 
-      <section id="panel-stories" class="tab-panel stories" role="tabpanel" aria-labelledby="tab-stories">
+      <section id="panel-stories" class="tab-panel stories" role="tabpanel" aria-labelledby="tab-stories" hidden>
+
+
+
+        <article class="story">
+          <h2>Turning is choosing which tires slip</h2>
+
+          <p>Slopes are the hardest part of RoboCup Rescue Line. Our four-wheel-drive robot slid on inclines at the gains that worked on flat ground. The problem was how the robot turns, which comes down to controlling the point it rotates around.</p>
+          <p>I ran differential tests and watched the chassis. Found the suspension absorbing the rotation. Its twist axis sat above the tires, and that gap is a moment arm and the turn I was asking for was being stored as twist instead. I brought the twist axis down parallel to the tire height. With the moment arm gone, the problem was isolated.</p>
+
+          <!-- <figure>
+            <img src="media/img/suspension-twist-axis.svg" alt="Two panels comparing a suspension pivot above the tires, where lateral force creates a moment arm that twists the chassis, with the pivot lowered to tire height">
+            <figcaption>Our suspension isn't for vibration. It's a soft board that twists so all four tires stay on the ground. Lateral force at the tires times the height gap becomes twist; lowering the axis removes it.</figcaption>
+          </figure> -->
+          <figure class="story-figure">
+            <div class="figure-pair">
+              <img src="media/img/suspention (1).jpeg" loading="lazy"
+                   alt="The suspension twist axis sitting above the tire line">
+              <img src="media/img/susp-aligned.jpeg" loading="lazy"
+                   alt="The suspension twist axis brought down level with the tires">
+            </div>
+            <figcaption>Our suspension isn't for vibration. It's a soft board that twists so all four tires stay on the ground. On the left its twist axis sits well above the tires, and that height gap turns lateral force into twist. On the right the axis is level with the tires, so there's nothing left to twist about.</figcaption>
+          </figure>
+          <p>Then the real question: how to control the rotation axis on four-wheel drive. The friction circle gave me the frame. Each tire has a limited budget of grip, gravity is already spending part of it on a slope, and what's left decides whether that tire holds or slips. Turning is choosing which tires slip and which hold. So I wrote a function that takes roll and pitch, estimates how much grip gravity has already taken from each tire, and sets the four powers to put the rotation center where I want it.</p>
+          <p>We held the same speed on slopes as on flat ground, at roughly 85% no-derail. Across three to four days of competition running, it derailed once. The 90 and 180 degree turn markers stayed hardcoded. We ran out of time, so I don't know whether the same function holds there, or on a robot I didn't build.</p>
+        </article>
+
+
         <article class="story">
           <h2>The model wasn't broken. The measurement was.</h2>
-          <p>Getting a custom object detector onto a K230D was my first time working with this microprocessor. Flashing and running the vendor demo was easy. MobileNet-SSDv2 Lite ran without trouble.</p>
-          <p>I trained my own MobileNet and had ONNX output in about two days. Converting it to <code>.kmodel</code> was where it stopped. I tried PTQ through the official repository and many combinations of compile options. None worked. I learned about QAT here. After about three days on MobileNet, I pivoted to YOLOv8n because it had more community resources and had been verified on the K230D. The work ran from August through March, interleaved with the rest of the robot development.</p>
-          <p>I collected 200 images on the real robot, confirmed ONNX performance, converted the model to <code>.kmodel</code>, and dropped it into the demo code. Nothing. I flashed MicroPython, checked the nncase version, matched dependency versions to it, and got float-to-float conversion working in one day. Adding PTQ produced nonsense.</p>
-          <p>I tried AI Cube and other repositories. AI Cube did not expose every compile option, so I moved to the lowest-level controllable code available. PTQ output produced visible boxes, but they were scattered and badly misplaced.</p>
-          <p>I then spent two days verifying that the K230 simulator and the physical K230D behaved the same. I used a known-working demo YOLO model, passed identical inputs to both, compared the results, and checked input shape handling.</p>
-          <p>Once that comparison was trustworthy, I scripted an automated sweep. It varied compile options across dependency versions that others had reported working, then compared simulator results to find sane output. I tried three configurations per model first to check viability, then every option on the survivors.</p>
-          <p>I evaluated thirteen quantized builds against 78 ground truths across 50 validation images. A float32 reference build confirmed that the architecture and decoder were correct, isolating quantization as the only failure mode.</p>
-          <p>Two findings followed. The <code>recall = 0</code> readings that had sent me down several dead ends were an artifact of the nncase 2.9.0 simulator mis-executing the YOLOv8 DFL head. Upgrading the host compiler and simulator to 2.11.0, without touching the on-device runtime, made the same kmodel files report their real performance. The models had been fine. The instrument was wrong.</p>
-          <p>The smaller finding was that a 128-image calibration set scored slightly worse than a 74-image one. PTQ accuracy plateaus, and depends on which images are picked rather than how many.</p>
-          <p>The final build used int16 activations and uint8 weights. It reached r@0.05 of 1.00, r@0.4 of 0.970, and avg_bsi 0.732, matching the float reference on both geometry and single-best ranking, at 260KB over the u8/u8 build. It ran 8 classes at about 27fps.</p>
+        
+          <p>The K230D was a new chip to me. The vendor demo flashed and ran fine. My own detector produced nothing. Looking back I should have stayed on the demo path longer, but I wanted my own model, so I trained a MobileNet, failed to get it through quantization, and lost three days before pivoting to YOLOv8n because more people had that working on this chip.</p>
+        
+          <p>It still didn't work, and I couldn't reason my way to why. Quantization was the one step I couldn't inspect. So I stopped reasoning and started listing: compile options, dependency versions, calibration set, activation and weight precision. Every one of them was something I could enumerate and test.</p>
+        
+          <p>I scripted the sweep. Three configurations per model to check viability, then every option on the survivors. Thirteen quantized builds, scored against 78 ground truths across 50 validation images. A float32 reference build passed, which meant the architecture and decoder were correct and the failure had to be inside quantization.</p>
+        
+          <p>It wasn't. The <code>recall = 0</code> readings that had sent me down several dead ends were the nncase 2.9.0 simulator mis-executing the YOLOv8 DFL head. Upgrading the host compiler to 2.11.0, without touching anything on the device, made the same kmodel files report their real numbers. The final build used int16 activations and uint8 weights: r@0.4 of 0.970, 8 classes at about 27fps.</p>
         </article>
 
-        <article class="story">
-          <h2>The suspension was eating the input.</h2>
-          <p>Slopes are the hardest part of RoboCup Rescue Line. Our four-wheel-drive robot slid on inclines at the same gains that worked on flat ground.</p>
-          <p>I started from why. On a slope, gravity pulls the robot into the kinetic friction range, so it slides rather than grips. Rebuilding was not an option under time pressure. I wanted three-wheel drive with a free-spinning rear wheel, so the question became whether I could control the rotational axis instead.</p>
-          <p>I ran differential tests—<code>100,100,0,0</code> and variants—and found that the suspension was absorbing the rotational energy. I removed that effect by bringing the suspension's pivot axis parallel to the tire height, then confirmed it was gone. Only then was the measurement clean enough to work with.</p>
-          <p>I reasoned about it with a friction circle, separating static and kinetic regions per tire under combined gravity and motor force.</p>
-          <p>What the runs told us was to keep the robot climbing as much as possible, which meant keeping the rotational axis on the uphill side. I hardcoded one state first—driving sideways, down-left—then started generalizing it to a function of roll and pitch.</p>
-          <p>I never finished that generalization. Competition timing forced us to keep every state hardcoded, and I don't know whether the generalized version would have worked.</p>
-          <p>Line following used the same principle, with an asymmetric PID holding the rotational axis uphill.</p>
-          <p>We maintained the same speed on slopes as on flat ground, with roughly 95% no-derail excluding edge cases where slopes combined with other tasks. Across three to four days of competition running, it derailed once.</p>
-        </article>
 
         <article class="story">
-          <h2>Bringing up a new robot, one layer at a time.</h2>
-          <p>Moving software onto a new robot with the same hardware stack started with updating the pin configuration for anything that changed, then testing one subsystem at a time.</p>
-          <p>For line following, I checked the raw RGB readings for consistency. I checked that HSV values matched the colors we actually saw. I confirmed detection worked before touching anything downstream.</p>
-          <p>This was only possible because detection and operation were separate layers, each with one job. When something broke, I could ask which layer rather than read the whole system.</p>
-          <p>Blue gain ran high on our sensor because silicon quantum efficiency falls off at short wavelengths, and green dominates the Bayer pattern because human vision is most sensitive there. AEC, AGC, and white balance all had to be understood and disabled before manual scaling of the sensor range was reliable.</p>
-          <p>One finding, stated and not chased: the cheaper of our two cameras returned different starting values on every boot, even with auto-adjustment disabled.</p>
+          <h2>I had never built anyone else's idea.</h2>
+        
+          <p>I've built robots mostly alone. Teammates at three schools, but almost all of them came from other fields, so on the robotics itself I was the one deciding. Eleven years of that leaves you with a philosophy, and it's hard to tell a philosophy apart from a habit.</p>
+        
+          <p>I met Hampus at the 2024 world championship in the Netherlands and we traded notes for a year. In 2026 Summer, I invited him to Japan to build a robot together. I raised over $7,000 in sponsorship for it. He came for a month, we lived in the same room, and we worked on the robot every waking hour of it.</p>
+        
+          <p>The clearest case was his drivetrain. He ran three-wheel drive with a spin controlled rear wheel, and I had dismissed it for a year. Not on its merits; I had doubts about the balance of his robot as a whole, the wheel sat at a corner of a structure I wouldn't have built, and I thought my mechanisms were better almost everywhere else. So I never looked at the drivetrain by itself. Four-wheel drive was what I knew, and I assumed I could control the rotation center with it. Three wheels place that center for you, in hardware, for free.</p>
+        
+          <p>What came out had my suspension, my debris guard, and my board, and his servo-to-tire mounting and his approach to the arm. Neither of us gave anything up to get there. We had been solving the same problem for years and arrived at different answers, and once we were building instead of comparing, it was obvious which answer was better for which part.</p>
+        
+          <p>Watching a robot compete tells you whether it won. It doesn't tell you where a design is fragile, what it makes easy, or what it costs to build. I had held opinions for years about approaches I had never once built. So now I build the ones I'd have dismissed. That month was a month, but it's the only way the comparison means anything.</p>
         </article>
+
       </section>
     </main>
 

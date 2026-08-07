@@ -4,6 +4,7 @@
   --muted: #536453;
   --accent: #1e3d2b;
   --rule: rgba(30, 61, 43, 0.28);
+  --surface: #d8e9c5;
   --topbar-height: 188px;
 }
 
@@ -182,7 +183,53 @@ figcaption {
   border-radius: 10px;
 }
 
+.figure-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: center;
+}
+
+.figure-pair img {
+  display: block;
+  width: 100%;
+  height: 280px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
 #panel-system > p { margin: 22px 0 0; }
+
+.cad-showcase {
+  margin-top: 38px;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid rgba(30, 61, 43, 0.18);
+  border-radius: 14px;
+}
+
+.cad-title {
+  margin: 0 0 18px;
+  color: var(--accent);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.cad-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.cad-row img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  height: auto;
+  object-fit: contain;
+}
 
 .story + .story { margin-top: 78px; }
 
@@ -273,6 +320,8 @@ code {
   }
   .tab-meta { text-align: left; }
   .tab-panel { margin-top: 42px; }
+  .cad-showcase { margin-top: 30px; padding: 14px; }
+  .cad-row { gap: 7px; }
   .social-dock { bottom: 18px; gap: 12px; }
   .social-link { width: 48px; height: 48px; }
   h2 { font-size: 22px; }
