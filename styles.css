@@ -39,8 +39,10 @@ a:hover, a:focus-visible { color: #31583f; }
   z-index: 20;
   inset: 0 0 auto;
   display: grid;
-  place-items: center;
+  align-items: center;
+  justify-items: start;
   height: var(--topbar-height);
+  padding-left: 100px;
   background: var(--bg);
 }
 
@@ -306,6 +308,7 @@ code {
 
 @media (max-width: 760px) {
   :root { --topbar-height: 135px; }
+  .topbar { padding-left: 20px; }
   .brand { font-size: 35px; }
   .left-column {
     width: 100%;
