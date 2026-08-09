@@ -4,17 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Kent Nakai builds autonomous robots end to end: mechanical design, PCBs, firmware, and on-device inference.">
-  <title>Kent Nakai — Autonomous robotics</title>
+  <title>Kent Nakai &mdash; Autonomous robotics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="styles.css?v=20260807">
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260808-clean1">
+  <script src="script.js?v=20260808-clean1" defer></script>
 </head>
 <body id="top">
   <header class="topbar">
-    <a class="brand" href="#top">Kent Nakai</a>
+    <div class="topbar-inner">
+      <a class="brand" href="#top">Kent Nakai</a>
+    </div>
   </header>
 
   <div class="site-shell">
@@ -98,7 +100,7 @@
 
 
 
-        <article class="story">
+        <article id="story-turning" class="story">
           <h2>Turning is choosing which tires slip</h2>
 
           <p>Slopes are the hardest part of RoboCup Rescue Line. Our four-wheel-drive robot slid on inclines at the gains that worked on flat ground. The problem was how the robot turns, which comes down to controlling the point it rotates around.</p>
@@ -122,7 +124,7 @@
         </article>
 
 
-        <article class="story">
+        <article id="story-model" class="story">
           <h2>The model wasn't broken. The measurement was.</h2>
         
           <p>The K230D was a new chip to me. The vendor demo flashed and ran fine. My own detector produced nothing. Looking back I should have stayed on the demo path longer, but I wanted my own model, so I trained a MobileNet, failed to get it through quantization, and lost three days before pivoting to YOLOv8n because more people had that working on this chip.</p>
@@ -135,7 +137,7 @@
         </article>
 
 
-        <article class="story">
+        <article id="story-human" class="story">
           <h2>I had never built anyone else's idea.</h2>
         
           <p>I've built robots mostly alone. Teammates at three schools, but almost all of them came from other fields, so on the robotics itself I was the one deciding. Eleven years of that leaves you with a philosophy, and it's hard to tell a philosophy apart from a habit.</p>

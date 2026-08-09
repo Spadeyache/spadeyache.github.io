@@ -5,11 +5,14 @@
   const indicator = document.querySelector('.tab-indicator');
 
   function positionIndicator(tab) {
+    if (!tab || !tabList || !indicator) return;
     const y = tab.offsetTop + tab.offsetHeight - indicator.offsetHeight;
     tabList.style.setProperty('--indicator-y', `${y}px`);
   }
 
   function activateTab(tab, moveFocus) {
+    if (!tab) return;
+
     tabs.forEach((item) => {
       const selected = item === tab;
       item.setAttribute('aria-selected', String(selected));
