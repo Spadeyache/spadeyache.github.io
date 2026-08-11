@@ -1,10 +1,11 @@
 :root {
-  --background: #c5e1a5;
-  --ink: #203027;
-  --accent: #1e3d2b;
-  --muted: #536453;
-  --line: rgba(30, 61, 43, 0.3);
-  --surface: rgba(244, 249, 236, 0.42);
+  --background: #e9dfc9;
+  --ink: #302f25;
+  --accent: #5a6224;
+  --muted: #6d6556;
+  --wood: #995a30;
+  --line: rgba(91, 78, 52, 0.28);
+  --surface: rgba(255, 250, 238, 0.38);
   --page-width: 1120px;
   --reading-width: 760px;
 }
@@ -29,6 +30,14 @@ a {
   color: inherit;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
+}
+
+a:hover,
+a:focus-visible { color: var(--wood); }
+
+::selection {
+  color: #28251c;
+  background: #b9b46d;
 }
 
 .simple-header {
@@ -121,7 +130,7 @@ figure { margin: 0; }
   display: block;
   width: 100%;
   aspect-ratio: 16 / 10;
-  background: #142019;
+  background: #27271e;
   border: 0;
   border-radius: 4px;
   object-fit: cover;
