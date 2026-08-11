@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The electronics and PCB architecture behind Kent Nakai's rescue robot.">
+  <title>Kent Nakai &mdash; Robot System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="simple.css?v=20260810-7">
+</head>
+<body>
+  <header class="simple-header">
+    <a class="simple-title" href="index2.html" aria-label="Return to What and How I Built Robots">
+      <strong>Kent Nakai</strong>
+      <span aria-hidden="true">&mdash;</span>
+      <span>Robot System</span>
+    </a>
+  </header>
+
+  <main class="robot-page">
+    <a class="back-link" href="index2.html"><span aria-hidden="true">&larr;</span> Back to What &amp; How</a>
+
+    <section aria-labelledby="system-title">
+      <p class="section-label">Inside the robot</p>
+      <h1 id="system-title">PCB schematic and electronics stack</h1>
+      <p class="robot-intro">I designed the electrical system from power distribution and the custom PCB through sensing, on-device inference, motor control, and the serial protocol that connects them.</p>
+
+      <figure class="schematic-box">
+        <img src="media/img/electronics-stack.png" width="6043" height="2925" alt="Electronics architecture showing the robot's sensors, inference computer, custom controller, power system, motors, and actuators">
+        <figcaption>The complete signal and power path, from sensors and the K230D inference board to the controller and actuators.</figcaption>
+      </figure>
+    </section>
+  </main>
+</body>
+</html>

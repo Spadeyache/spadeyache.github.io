@@ -465,6 +465,73 @@ a:hover, a:focus-visible { color: #31583f; }
 .introduction p { margin: 0 0 22px; }
 .introduction p:last-child { margin-bottom: 0; }
 
+.research-intro {
+  position: relative;
+  width: 100%;
+}
+
+.hero-media {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: var(--content-width);
+  height: 310px;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.media-motion {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 310px;
+  transform: translate3d(-50%, 0, 0);
+  will-change: width, height, transform;
+}
+
+.media-tile {
+  position: absolute;
+  top: 0;
+  display: block;
+  width: calc(50% - 6px);
+  height: 310px;
+  border: 1px solid rgba(30, 61, 43, 0.28);
+  border-radius: 12px;
+  object-fit: cover;
+  will-change: width, height, transform;
+}
+
+.media-person {
+  left: 0;
+  object-position: 50% 27%;
+}
+
+.media-robot {
+  left: calc(50% + 6px);
+  object-position: 50% 52%;
+}
+
+.research-copy {
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 27px auto 0;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.research-copy p { margin: 0 0 25px; }
+.research-copy p:last-child { margin-bottom: 0; }
+
+.research-lead {
+  color: var(--accent);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.research-intro + .section-tabs { margin-top: 78px; }
+
 .section-tabs {
   position: relative;
   width: 100%;
@@ -771,6 +838,15 @@ code {
     padding: calc(var(--topbar-height) + 32px) 20px 112px;
   }
   .introduction { font-size: 17px; }
+  .hero-media,
+  .media-motion { height: 230px; }
+  .media-tile { height: 230px; }
+  .research-copy {
+    margin-top: 24px;
+    font-size: 17px;
+  }
+  .research-lead { font-size: 18px; }
+  .research-intro + .section-tabs { margin-top: 58px; }
   .section-tabs { margin-top: 24px; }
   .section-tab {
     grid-template-columns: 1fr;
@@ -786,6 +862,16 @@ code {
   h2 { font-size: 22px; }
 }
 
+@media (min-width: 1200px) {
+  .hero-media {
+    position: sticky;
+    top: calc(var(--topbar-height) + 18px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .tab-indicator { transition: none; }
+  .hero-media { position: relative; top: auto; }
+  .media-motion,
+  .media-tile { will-change: auto; }
 }
