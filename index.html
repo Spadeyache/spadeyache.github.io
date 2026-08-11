@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="simple.css?v=20260810-palette1">
+  <link rel="stylesheet" href="simple.css?v=20260811-contact-page">
 </head>
 <body>
   <header class="simple-header">
@@ -17,36 +17,64 @@
       <span aria-hidden="true">&mdash;</span>
       <span>What and How I Built Robots</span>
     </a>
+    <nav class="simple-nav" aria-label="Primary navigation">
+      <a href="contact.html">Contact</a>
+      <a href="media/Kent-Nakai-Resume.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a>
+    </nav>
   </header>
 
   <main>
     <section class="what-section" aria-labelledby="what-title">
       <h1 class="section-label" id="what-title">What</h1>
-      <p class="what-statement">I built a robot that navigates disaster areas and relocates people to safety. The core challenge was following a path on slopes, where the robot slips.</p>
+      <p class="what-statement">I built autonomous robots that navigates disaster areas and relocates people to safety. The core challenge was following a path on slopes, where the robot slips.</p>
 
-      <div class="video-box" aria-label="The robot working">
-        <div class="video-grid-simple">
-          <figure>
-            <div class="video-frame">
-              <video controls playsinline preload="metadata" poster="media/video/victim-zone-47.png">
-                <source src="media/video/victim-zone.mp4" type="video/mp4">
-                Your browser does not support this video. <a href="media/video/victim-zone.mp4">Download the video.</a>
-              </video>
-            </div>
-            <figcaption>Finding, retrieving, and relocating a victim.</figcaption>
-          </figure>
-
-          <figure>
-            <div class="video-frame">
-              <video controls muted playsinline preload="metadata" poster="media/video/slope-line-following-first.png">
-                <source src="media/video/slope-line-following.mp4" type="video/mp4">
-                Your browser does not support this video. <a href="media/video/slope-line-following.mp4">Download the video.</a>
-              </video>
-            </div>
-            <figcaption>Following the line through a flat-to-slope transition.</figcaption>
-          </figure>
+      <div class="robot-stage" aria-label="The rescue robot and two field run videos">
+        <div class="stage-robot" aria-hidden="true">
+          <img src="media/img/robot.png?v=20260811-centered" alt="" width="1395" height="1236" decoding="async">
         </div>
+
+        <button
+          class="stage-clip stage-clip-left"
+          type="button"
+          data-video-src="media/video/slope-line-following.mp4"
+          data-video-poster="media/video/slope-line-following-first.png"
+          data-video-title="Following the line through a flat-to-slope transition."
+          data-video-angle="-2"
+          aria-label="Play video: Following the line through a flat-to-slope transition"
+        >
+          <span class="stage-clip-media">
+            <img src="media/video/slope-line-following-first.png" alt="" loading="lazy" decoding="async">
+            <span class="stage-clip-shade" aria-hidden="true"></span>
+            <span class="stage-clip-label"><span class="stage-play" aria-hidden="true">&#9654;</span>Line following on slope transitions</span>
+          </span>
+        </button>
+
+        <button
+          class="stage-clip stage-clip-right"
+          type="button"
+          data-video-src="media/video/victim-zone.mp4"
+          data-video-poster="media/video/victim-zone-47.png"
+          data-video-title="Finding, retrieving, and relocating a victim."
+          data-video-angle="2"
+          aria-label="Play video: Finding, retrieving, and relocating a victim"
+        >
+          <span class="stage-clip-media">
+            <img src="media/video/victim-zone-47.png" alt="" loading="lazy" decoding="async">
+            <span class="stage-clip-shade" aria-hidden="true"></span>
+            <span class="stage-clip-label"><span class="stage-play" aria-hidden="true">&#9654;</span>Detection + manipulation + navigation</span>
+          </span>
+        </button>
       </div>
+
+      <dialog class="video-dialog" id="video-dialog" aria-labelledby="video-dialog-title">
+        <div class="video-dialog-shell">
+          <video id="video-dialog-player" controls playsinline preload="none"></video>
+          <div class="video-dialog-caption">
+            <p id="video-dialog-title"></p>
+            <button class="video-dialog-close" type="button" aria-label="Close video">Close</button>
+          </div>
+        </div>
+      </dialog>
 
       <a class="detail-link" href="robot.html">See more about the robot <span aria-hidden="true">&rarr;</span></a>
     </section>
@@ -69,6 +97,113 @@
         </div>
       </article>
     </section>
+
   </main>
+  <script>
+    (() => {
+      const dialog = document.querySelector('#video-dialog');
+      const player = document.querySelector('#video-dialog-player');
+      const title = document.querySelector('#video-dialog-title');
+      const closeButton = document.querySelector('.video-dialog-close');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let activeClip = null;
+      let dialogAnimation = null;
+      let isClosing = false;
+
+      if (!dialog || !player || !title || !closeButton) return;
+
+      const zoomFrame = (sourceRect, targetRect, opacity, angle = 0) => {
+        const sourceX = sourceRect.left + (sourceRect.width / 2);
+        const sourceY = sourceRect.top + (sourceRect.height / 2);
+        const targetX = targetRect.left + (targetRect.width / 2);
+        const targetY = targetRect.top + (targetRect.height / 2);
+        const scale = Math.max(0.08, Math.min(1, sourceRect.width / targetRect.width));
+
+        return {
+          opacity,
+          transform: `translate(${sourceX - targetX}px, ${sourceY - targetY}px) scale(${scale}) rotate(${angle}deg)`,
+          transformOrigin: 'center center'
+        };
+      };
+
+      const clipMediaRect = () => activeClip
+        ?.querySelector('.stage-clip-media')
+        ?.getBoundingClientRect();
+
+      const clipAngle = () => Number.parseFloat(activeClip?.dataset.videoAngle || '0') || 0;
+
+      const closeDialog = () => {
+        if (!dialog.open || isClosing) return;
+
+        const sourceRect = clipMediaRect();
+        if (reducedMotion.matches || !sourceRect || !dialog.animate) {
+          dialog.close();
+          return;
+        }
+
+        isClosing = true;
+        player.pause();
+        const targetRect = dialog.getBoundingClientRect();
+        dialogAnimation?.cancel();
+        dialogAnimation = dialog.animate([
+          { opacity: 1, transform: 'translate(0, 0) scale(1)' },
+          zoomFrame(sourceRect, targetRect, 0.2, clipAngle())
+        ], {
+          duration: 340,
+          easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+          fill: 'both'
+        });
+
+        dialogAnimation.finished
+          .catch(() => {})
+          .then(() => dialog.close());
+      };
+
+      document.querySelectorAll('.stage-clip').forEach((clip) => {
+        clip.addEventListener('click', () => {
+          activeClip = clip;
+          player.poster = clip.dataset.videoPoster || '';
+          player.src = clip.dataset.videoSrc || '';
+          player.muted = clip.dataset.videoMuted === 'true';
+          title.textContent = clip.dataset.videoTitle || 'Robot field run';
+          dialog.showModal();
+
+          const sourceRect = clipMediaRect();
+          if (!reducedMotion.matches && sourceRect && dialog.animate) {
+            const targetRect = dialog.getBoundingClientRect();
+            dialogAnimation?.cancel();
+            dialogAnimation = dialog.animate([
+              zoomFrame(sourceRect, targetRect, 0.35, clipAngle()),
+              { opacity: 1, transform: 'translate(0, 0) scale(1)' }
+            ], {
+              duration: 500,
+              easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+              fill: 'none'
+            });
+          }
+
+          player.play().catch(() => {});
+        });
+      });
+
+      closeButton.addEventListener('click', closeDialog);
+      dialog.addEventListener('click', (event) => {
+        if (event.target === dialog) closeDialog();
+      });
+      dialog.addEventListener('cancel', (event) => {
+        event.preventDefault();
+        closeDialog();
+      });
+      dialog.addEventListener('close', () => {
+        dialogAnimation?.cancel();
+        dialogAnimation = null;
+        isClosing = false;
+        activeClip = null;
+        player.pause();
+        player.removeAttribute('src');
+        player.load();
+      });
+    })();
+  </script>
 </body>
 </html>
