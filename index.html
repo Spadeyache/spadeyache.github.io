@@ -3,35 +3,60 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Kent Nakai builds autonomous robots end to end: mechanical design, PCBs, firmware, and on-device inference.">
-  <title>Kent Nakai &mdash; Autonomous robotics</title>
+  <meta name="description" content="What Kent Nakai built and how he solved difficult robotics problems.">
+  <title>Kent Nakai &mdash; What and How I Built Robots</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="styles.css?v=20260810-hero1">
-  <script src="script.js?v=20260810-hero1" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="simple.css?v=20260810-palette1">
 </head>
-<body id="top">
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="#top">Kent Nakai</a>
-    </div>
+<body>
+  <header class="simple-header">
+    <a class="simple-title" href="index.html" aria-label="Kent Nakai, home">
+      <strong>Kent Nakai</strong>
+      <span aria-hidden="true">&mdash;</span>
+      <span>What and How I Built Robots</span>
+    </a>
   </header>
 
-  <div class="site-shell">
-    <main class="left-column">
-      <section class="research-intro" aria-label="Slope line-following research story">
-        <figure class="hero-media" data-scroll-media>
-          <div class="media-motion">
-            <img class="media-tile media-person" src="media/img/kent-portrait.jpeg" width="1170" height="1364" fetchpriority="high" alt="Kent Nakai">
-            <img class="media-tile media-robot" src="media/img/slope-robot.jpeg" width="2048" height="1536" fetchpriority="high" alt="Kent Nakai's four-wheel rescue robot">
-          </div>
-          <figcaption class="visually-hidden">Kent Nakai and the four-wheel rescue robot used to study line following on slopes.</figcaption>
-        </figure>
+  <main>
+    <section class="what-section" aria-labelledby="what-title">
+      <h1 class="section-label" id="what-title">What</h1>
+      <p class="what-statement">I built a robot that navigates disaster areas and relocates people to safety. The core challenge was following a path on slopes, where the robot slips.</p>
 
-        <div class="research-copy">
-          <p class="research-lead">Our robot navigates disaster areas and relocates people to safety. The core problem was following a path on slopes, where the robot slips.</p>
+      <div class="video-box" aria-label="The robot working">
+        <div class="video-grid-simple">
+          <figure>
+            <div class="video-frame">
+              <video controls playsinline preload="metadata" poster="media/video/victim-zone-47.png">
+                <source src="media/video/victim-zone.mp4" type="video/mp4">
+                Your browser does not support this video. <a href="media/video/victim-zone.mp4">Download the video.</a>
+              </video>
+            </div>
+            <figcaption>Finding, retrieving, and relocating a victim.</figcaption>
+          </figure>
+
+          <figure>
+            <div class="video-frame">
+              <video controls muted playsinline preload="metadata" poster="media/video/slope-line-following-first.png">
+                <source src="media/video/slope-line-following.mp4" type="video/mp4">
+                Your browser does not support this video. <a href="media/video/slope-line-following.mp4">Download the video.</a>
+              </video>
+            </div>
+            <figcaption>Following the line through a flat-to-slope transition.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <a class="detail-link" href="robot.html">See more about the robot <span aria-hidden="true">&rarr;</span></a>
+    </section>
+
+    <section class="how-section" aria-labelledby="how-title">
+      <p class="section-label">How</p>
+
+      <article class="case-study">
+        <div class="case-copy">
+          <h2 class="what-statement how-statement" id="how-title">The core problem was following a path on slopes, where the robot slips.</h2>
 
           <p>I ruled out perception and unit consistency first. The data was consistent and the movement matched what the camera saw.</p>
 
@@ -40,135 +65,10 @@
           <p>To change how the robot rotates, I had to understand how the rotational axis behaves on a four-wheel drive robot. It turned out the suspension was absorbing the rotation, so the axis was not something I could set in software. That required a hardware change.</p>
 
           <p>Once I could place the axis, I moved it to the four extreme corners and compared each against gentle versus steep slopes and uphill versus downhill turns. Each position had conditions where it worked. That comparison identified where the axis should actually sit.</p>
+
         </div>
-      </section>
-
-      
-
-      <nav class="section-tabs" role="tablist" aria-label="Research evidence">
-        <button id="tab-robot" class="section-tab" type="button" role="tab" aria-selected="true" aria-controls="panel-robot">
-          <span class="tab-title">The robot working</span>
-          <span class="tab-meta">two videos, 30 seconds</span>
-        </button>
-        <button id="tab-system" class="section-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-system" tabindex="-1">
-          <span class="tab-title">What I build</span>
-          <span class="tab-meta">what I designed, one diagram</span>
-        </button>
-        <button id="tab-stories" class="section-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-stories" tabindex="-1">
-          <span class="tab-title">Three times something broke</span>
-          <span class="tab-meta">the part I'd read first</span>
-        </button>
-        <span class="tab-indicator" aria-hidden="true"></span>
-      </nav>
-
-      <section id="panel-robot" class="tab-panel" role="tabpanel" aria-labelledby="tab-robot">
-        <h2 class="visually-hidden">The robot working</h2>
-        <div class="video-grid">
-          <figure>
-            <video controls playsinline preload="none" poster="media/video/victim-zone-47.png" aria-label="Robot retrieving a victim and exiting the evacuation zone">
-              <source src="media/video/victim-zone.mp4" type="video/mp4">
-              Your browser does not support this video. <a href="media/video/victim-zone.mp4">Download the MP4 file.</a>
-            </video>
-            <figcaption>Detecting a victim on-device, picking it up, deploying it, and leaving
-              the room. Perception, manipulation, and navigation running together.</figcaption>
-          </figure>
-          <figure>
-            <video controls muted playsinline preload="none" poster="media/video/slope-line-following-first.png" aria-label="Robot following a line from flat ground onto a slope">
-              <source src="media/video/slope-line-following.mp4" type="video/mp4">
-              Your browser does not support this video. <a href="media/video/slope-line-following.mp4">Download the MP4 file.</a>
-            </video>
-            <figcaption>Following a line across the transition between flat ground and a slope.</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section id="panel-system" class="tab-panel" role="tabpanel" aria-labelledby="tab-system" hidden>
-        <h2 class="visually-hidden">The System I build</h2>
-        <figure class="system-figure">
-          <img src="media/img/electronics-stack.png" width="6043" height="2925" loading="lazy" alt="Electronics architecture showing the robot's sensors, controllers, actuators, power, and communication buses">
-        </figure>
-        <p>I designed the electronics stack myself: power distribution, the custom PCB, the connections between compute and control, and the serial protocol that joined them. The diagram follows the system from sensors and the K230D inference board through the controller to the motors and actuators.</p>
-        <figure class="cad-showcase">
-          <figcaption class="cad-title">Recent robots I built</figcaption>
-          <div class="cad-row" aria-label="Four recent robot CAD designs">
-            <img src="media/img/CAD_BR-transparent.png" width="1268" height="1240" loading="lazy" alt="BR robot CAD design">
-            <img src="media/img/CAD_KR-transparent.png" width="1533" height="1026" loading="lazy" alt="KR robot CAD design">
-            <img src="media/img/CAD_NL-transparent.png" width="1409" height="1117" loading="lazy" alt="NL robot CAD design">
-            <img src="media/img/CAD_US-transparent.png" width="1611" height="976" loading="lazy" alt="US robot CAD design">
-          </div>
-        </figure>
-      </section>
-
-      <section id="panel-stories" class="tab-panel stories" role="tabpanel" aria-labelledby="tab-stories" hidden>
-
-
-
-        <article id="story-turning" class="story">
-          <h2>Turning is choosing which tires slip</h2>
-
-          <p>Slopes are the hardest part of RoboCup Rescue Line. Our four-wheel-drive robot slid on inclines at the gains that worked on flat ground. The problem was how the robot turns, which comes down to controlling the point it rotates around.</p>
-          <p>I ran differential tests and watched the chassis. Found the suspension absorbing the rotation. Its twist axis sat above the tires, and that gap is a moment arm and the turn I was asking for was being stored as twist instead. I brought the twist axis down parallel to the tire height. With the moment arm gone, the problem was isolated.</p>
-
-          <!-- <figure>
-            <img src="media/img/suspension-twist-axis.svg" alt="Two panels comparing a suspension pivot above the tires, where lateral force creates a moment arm that twists the chassis, with the pivot lowered to tire height">
-            <figcaption>Our suspension isn't for vibration. It's a soft board that twists so all four tires stay on the ground. Lateral force at the tires times the height gap becomes twist; lowering the axis removes it.</figcaption>
-          </figure> -->
-          <figure class="story-figure">
-            <div class="figure-pair">
-              <img src="media/img/suspention (1).jpeg" loading="lazy"
-                   alt="The suspension twist axis sitting above the tire line">
-              <img src="media/img/susp-aligned.jpeg" loading="lazy"
-                   alt="The suspension twist axis brought down level with the tires">
-            </div>
-            <figcaption>Our suspension isn't for vibration. It's a soft board that twists so all four tires stay on the ground. On the left its twist axis sits well above the tires, and that height gap turns lateral force into twist. On the right the axis is level with the tires, so there's nothing left to twist about.</figcaption>
-          </figure>
-          <p>Then the real question: how to control the rotation axis on four-wheel drive. The friction circle gave me the frame. Each tire has a limited budget of grip, gravity is already spending part of it on a slope, and what's left decides whether that tire holds or slips. Turning is choosing which tires slip and which hold. So I wrote a function that takes roll and pitch, estimates how much grip gravity has already taken from each tire, and sets the four powers to put the rotation center where I want it.</p>
-          <p>We held the same speed on slopes as on flat ground, at roughly 85% no-derail. Across three to four days of competition running, it derailed once. The 90 and 180 degree turn markers stayed hardcoded. We ran out of time, so I don't know whether the same function holds there, or on a robot I didn't build.</p>
-        </article>
-
-
-        <article id="story-model" class="story">
-          <h2>The model wasn't broken. The measurement was.</h2>
-        
-          <p>The K230D was a new chip to me. The vendor demo flashed and ran fine. My own detector produced nothing. Looking back I should have stayed on the demo path longer, but I wanted my own model, so I trained a MobileNet, failed to get it through quantization, and lost three days before pivoting to YOLOv8n because more people had that working on this chip.</p>
-        
-          <p>It still didn't work, and I couldn't reason my way to why. Quantization was the one step I couldn't inspect. So I stopped reasoning and started listing: compile options, dependency versions, calibration set, activation and weight precision. Every one of them was something I could enumerate and test.</p>
-        
-          <p>I scripted the sweep. Three configurations per model to check viability, then every option on the survivors. Thirteen quantized builds, scored against 78 ground truths across 50 validation images. A float32 reference build passed, which meant the architecture and decoder were correct and the failure had to be inside quantization.</p>
-        
-          <p>It wasn't. The <code>recall = 0</code> readings that had sent me down several dead ends were the nncase 2.9.0 simulator mis-executing the YOLOv8 DFL head. Upgrading the host compiler to 2.11.0, without touching anything on the device, made the same kmodel files report their real numbers. The final build used int16 activations and uint8 weights: r@0.4 of 0.970, 8 classes at about 27fps.</p>
-        </article>
-
-
-        <article id="story-human" class="story">
-          <h2>I had never built anyone else's idea.</h2>
-        
-          <p>I've built robots mostly alone. Teammates at three schools, but almost all of them came from other fields, so on the robotics itself I was the one deciding. Eleven years of that leaves you with a philosophy, and it's hard to tell a philosophy apart from a habit.</p>
-        
-          <p>I met Hampus at the 2024 world championship in the Netherlands and we traded notes for a year. In 2026 Summer, I invited him to Japan to build a robot together. I raised over $7,000 in sponsorship for it. He came for a month, we lived in the same room, and we worked on the robot every waking hour of it.</p>
-        
-          <p>The clearest case was his drivetrain. He ran three-wheel drive with a spin controlled rear wheel, and I had dismissed it for a year. Not on its merits; I had doubts about the balance of his robot as a whole, the wheel sat at a corner of a structure I wouldn't have built, and I thought my mechanisms were better almost everywhere else. So I never looked at the drivetrain by itself. Four-wheel drive was what I knew, and I assumed I could control the rotation center with it. Three wheels place that center for you, in hardware, for free.</p>
-        
-          <p>What came out had my suspension, my debris guard, and my board, and his servo-to-tire mounting and his approach to the arm. Neither of us gave anything up to get there. We had been solving the same problem for years and arrived at different answers, and once we were building instead of comparing, it was obvious which answer was better for which part.</p>
-        
-          <p>Watching a robot compete tells you whether it won. It doesn't tell you where a design is fragile, what it makes easy, or what it costs to build. I had held opinions for years about approaches I had never once built. So now I build the ones I'd have dismissed. That month was a month, but it's the only way the comparison means anything.</p>
-        </article>
-
-      </section>
-    </main>
-
-  </div>
-
-  <nav class="social-dock" aria-label="Contact links">
-    <a class="social-link" href="mailto:kn2847@nyu.edu" aria-label="Email Kent Nakai">
-      <i class="bi bi-envelope-fill" aria-hidden="true"></i>
-    </a>
-    <a class="social-link" href="https://github.com/Spadeyache/FATEN-RCJ26/tree/WorldChamp-Robot" aria-label="Kent Nakai on GitHub">
-      <i class="bi bi-github" aria-hidden="true"></i>
-    </a>
-    <a class="social-link" href="https://www.linkedin.com/in/kent-nakai/" aria-label="Kent Nakai on LinkedIn">
-      <i class="bi bi-linkedin" aria-hidden="true"></i>
-    </a>
-  </nav>
+      </article>
+    </section>
+  </main>
 </body>
 </html>
