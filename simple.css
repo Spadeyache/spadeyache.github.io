@@ -117,7 +117,7 @@ video:focus-visible {
   border-radius: 2px;
 }
 
-.square.hard { background: var(--hardcoded); }
+.square.hardcoded { background: var(--hardcoded); }
 .square.learned { background: var(--learned); }
 .square.none { background: transparent; }
 
@@ -496,4 +496,17 @@ video:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .how-arrow { transition: none; }
   .how-link:hover .how-arrow { transform: none; }
+}
+
+.note-keywords {
+  margin: 16px 0 0;
+  color: var(--secondary);
+  font-size: 14px;
+}
+
+.note ul {
+  margin: 24px 0 0;
+  padding-left: 22px;
+  font-size: 18px;
+  line-height: 1.7;
 }

@@ -20,9 +20,10 @@ Use progressive disclosure. The home page tells the clearest research story; det
 ## Page roles
 
 - `index.html`: landing page. What -> Why (timeline) -> How (link to notes).
-- `notes.html`: list of notes, filterable by Hardcoded / Learned. Rendered from `notes/notes.js`.
-- `notes/*.html`: one file per note (Problem -> What I did -> Result -> Still hardcoded). Copy `notes/slope-line-following.html` to add one.
-- `notes/notes.js`: the single notes data list. Feeds the notes page, the landing count, and each note's "Next" link.
+- `notes.html`: list of notes, filterable by Hardcoded / Learned.
+- `notes/<slug>/note.md`: one folder per note: metadata at the top (title, date, kind, project, keywords, media), then Problem -> What I did -> Result -> Still hardcoded. Format in `notes/README.md`.
+- `notes/notes.json`: note order. Feeds the notes page, the landing count, and each note's "Next" link.
+- `note.html`: renders any note via `note.html?n=<slug>`.
 - `robot.html`: deeper explanation of the robot (electronics, diagrams). Linked from the robot photo on the landing page.
 - `contact.html`: contact page.
 - `simple.css` + `site.js`: the active shared styles and behavior.
