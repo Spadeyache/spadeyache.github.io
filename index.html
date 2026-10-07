@@ -3,207 +3,125 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="What Kent Nakai built and how he solved difficult robotics problems.">
-  <title>Kent Nakai &mdash; What and How I Built Robots</title>
+  <meta name="description" content="Kent Nakai builds robots that learn to adapt on their own, at deployment.">
+  <title>Kent Nakai &mdash; what I chase, why, and how</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="simple.css?v=20260811-contact-page">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="simple.css?v=20261007-figtree">
 </head>
 <body>
-  <header class="simple-header">
-    <a class="simple-title" href="index.html" aria-label="Kent Nakai, home">
-      <strong>Kent Nakai</strong>
-      <span aria-hidden="true">&mdash;</span>
-      <span>What and How I Built Robots</span>
-    </a>
-    <nav class="simple-nav" aria-label="Primary navigation">
-      <a href="contact.html">Contact</a>
-      <a href="media/Kent-Nakai-Resume.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a>
-    </nav>
-  </header>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="site-title" href="index.html"><strong>Kent Nakai</strong><span> &mdash; what I chase, why, and how!</span></a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="notes.html">Notes</a>
+        <a href="contact.html">Contact</a>
+        <a href="media/Kent-Nakai-Resume.pdf" download>R&eacute;sum&eacute; &darr;</a>
+      </nav>
+    </header>
 
-  <main>
-    <section class="what-section" aria-labelledby="what-title">
-      <h1 class="section-label" id="what-title">What</h1>
-      <p class="what-statement">I built autonomous robots that navigates disaster areas and relocates people to safety. The core challenge was following a path on slopes, where the robot slips.</p>
+    <main>
+      <section class="what" aria-labelledby="what-headline">
+        <p class="label">What</p>
+        <h1 class="headline" id="what-headline">I build robots that learn to adapt on their own, at deployment.</h1>
+        <p class="sub">Computer Engineering at NYU Tandon. Eleven years of competitive robotics, building since age nine.</p>
+      </section>
 
-      <div class="robot-stage" aria-label="The rescue robot and two field run videos">
-        <div class="stage-robot" aria-hidden="true">
-          <img src="media/img/robot.png?v=20260811-centered" alt="" width="1395" height="1236" decoding="async">
-        </div>
-
-        <button
-          class="stage-clip stage-clip-left"
-          type="button"
-          data-video-src="media/video/slope-line-following.mp4"
-          data-video-poster="media/video/slope-line-following-first.png"
-          data-video-title="Following the line through a flat-to-slope transition."
-          data-video-angle="-2"
-          aria-label="Play video: Following the line through a flat-to-slope transition"
-        >
-          <span class="stage-clip-media">
-            <img src="media/video/slope-line-following-first.png" alt="" loading="lazy" decoding="async">
-            <span class="stage-clip-shade" aria-hidden="true"></span>
-            <span class="stage-clip-label"><span class="stage-play" aria-hidden="true">&#9654;</span>Line following on slope transitions</span>
-          </span>
-        </button>
-
-        <button
-          class="stage-clip stage-clip-right"
-          type="button"
-          data-video-src="media/video/victim-zone.mp4"
-          data-video-poster="media/video/victim-zone-47.png"
-          data-video-title="Finding, retrieving, and relocating a victim."
-          data-video-angle="2"
-          aria-label="Play video: Finding, retrieving, and relocating a victim"
-        >
-          <span class="stage-clip-media">
-            <img src="media/video/victim-zone-47.png" alt="" loading="lazy" decoding="async">
-            <span class="stage-clip-shade" aria-hidden="true"></span>
-            <span class="stage-clip-label"><span class="stage-play" aria-hidden="true">&#9654;</span>Detection + manipulation + navigation</span>
-          </span>
-        </button>
-      </div>
-
-      <dialog class="video-dialog" id="video-dialog" aria-labelledby="video-dialog-title">
-        <div class="video-dialog-shell">
-          <video id="video-dialog-player" controls playsinline preload="none"></video>
-          <div class="video-dialog-caption">
-            <p id="video-dialog-title"></p>
-            <button class="video-dialog-close" type="button" aria-label="Close video">Close</button>
+      <section class="media-row" aria-label="The robot and two field runs">
+        <figure>
+          <a class="media-frame" href="robot.html" aria-label="Rescue robot: see inside the robot">
+            <img class="robot-photo" src="media/img/robot.png" width="1395" height="1236" alt="The rescue robot: a compact four-wheel robot with an orange frame, blue wheels, and exposed wiring" decoding="async">
+          </a>
+          <figcaption>Rescue robot, RoboCupJunior</figcaption>
+        </figure>
+        <figure>
+          <div class="media-frame">
+            <video controls playsinline preload="none" poster="media/video/slope-line-following-first.png" aria-label="Line following on slope transitions">
+              <source src="media/video/slope-line-following.mp4" type="video/mp4">
+            </video>
           </div>
-        </div>
-      </dialog>
+          <figcaption>Line following on slope transitions</figcaption>
+        </figure>
+        <figure>
+          <div class="media-frame">
+            <video controls playsinline preload="none" poster="media/video/victim-zone-47.png" aria-label="Detection, manipulation and navigation">
+              <source src="media/video/victim-zone.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>Detection, manipulation and navigation</figcaption>
+        </figure>
+      </section>
 
-      <a class="detail-link" href="robot.html">See more about the robot <span aria-hidden="true">&rarr;</span></a>
-    </section>
+      <section class="section" aria-labelledby="why-label">
+        <p class="label" id="why-label">Why</p>
+        <p class="why-statement">I&rsquo;ve spent my life <span class="mark-hard">hardcoding adaptability</span>, into robots and into myself through sports. What excites me is machines that can <span class="mark-learned">learn it</span> the way I had to.</p>
 
-    <section class="how-section" aria-labelledby="how-title">
-      <p class="section-label">How</p>
+        <ol class="timeline">
+          <li>
+            <button type="button" aria-expanded="false" aria-controls="t1">
+              <span class="year">[YEAR]</span>
+              <span class="title"><span class="square hard" role="img" aria-label="Hardcoded"></span>First robot, age nine</span>
+              <span class="sign" aria-hidden="true">+</span>
+            </button>
+            <p class="detail" id="t1" hidden>[WHAT IT TAUGHT ME ABOUT ADAPTABILITY]</p>
+          </li>
+          <li>
+            <button type="button" aria-expanded="false" aria-controls="t2">
+              <span class="year">[YEAR] &ndash; now</span>
+              <span class="title"><span class="square hard" role="img" aria-label="Hardcoded"></span>RoboCupJunior, captain of Team FATEN</span>
+              <span class="sign" aria-hidden="true">+</span>
+            </button>
+            <p class="detail" id="t2" hidden>Every run, the robot meets a field it hasn&rsquo;t seen. [KEY RESULT]</p>
+          </li>
+          <li>
+            <button type="button" aria-expanded="false" aria-controls="t3">
+              <span class="year">2023 &ndash; 2025</span>
+              <span class="title"><span class="square none" aria-hidden="true"></span>Mathematics, Bard College at Simon&rsquo;s Rock</span>
+              <span class="sign" aria-hidden="true">+</span>
+            </button>
+            <p class="detail" id="t3" hidden>[WHAT IT TAUGHT ME ABOUT ADAPTABILITY]</p>
+          </li>
+          <li>
+            <button type="button" aria-expanded="false" aria-controls="t4">
+              <span class="year">2025 &ndash; now</span>
+              <span class="title"><span class="square none" aria-hidden="true"></span>Computer Engineering, NYU Tandon</span>
+              <span class="sign" aria-hidden="true">+</span>
+            </button>
+            <p class="detail" id="t4" hidden>[WHAT IT TAUGHT ME ABOUT ADAPTABILITY]</p>
+          </li>
+          <li>
+            <button type="button" aria-expanded="false" aria-controls="t5">
+              <span class="year">2026</span>
+              <span class="title"><span class="square hard" role="img" aria-label="Hardcoded"></span>RoboCup Rescue Robot League</span>
+              <span class="sign" aria-hidden="true">+</span>
+            </button>
+            <p class="detail" id="t5" hidden>Moving up to the major league, building toward 2027.</p>
+          </li>
+          <li>
+            <button type="button" aria-expanded="false" aria-controls="t6">
+              <span class="year">2026</span>
+              <span class="title"><span class="square learned" role="img" aria-label="Learned"></span>Research: robots that discover their own failures</span>
+              <span class="sign" aria-hidden="true">+</span>
+            </button>
+            <p class="detail" id="t6" hidden>The first step from hand-written fixes to robots that learn what went wrong.</p>
+          </li>
+        </ol>
+      </section>
 
-      <article class="case-study">
-        <div class="case-copy">
-          <h2 class="what-statement how-statement" id="how-title">The core problem was following a path on slopes, where the robot slips.</h2>
-
-          <p>I ruled out perception and unit consistency first. The data was consistent and the movement matched what the camera saw.</p>
-
-          <p>I then compared the same PID controller approaching the path from uphill and from downhill. The asymmetry showed that gravity-induced slip was the cause, and that the way we rotate toward the line had to account for it.</p>
-
-          <p>To change how the robot rotates, I had to understand how the rotational axis behaves on a four-wheel drive robot. It turned out the suspension was absorbing the rotation, so the axis was not something I could set in software. That required a hardware change.</p>
-
-          <p>Once I could place the axis, I moved it to the four extreme corners and compared each against gentle versus steep slopes and uphill versus downhill turns. Each position had conditions where it worked. That comparison identified where the axis should actually sit.</p>
-
-        </div>
-      </article>
-    </section>
-
-  </main>
-  <script>
-    (() => {
-      const dialog = document.querySelector('#video-dialog');
-      const player = document.querySelector('#video-dialog-player');
-      const title = document.querySelector('#video-dialog-title');
-      const closeButton = document.querySelector('.video-dialog-close');
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-      let activeClip = null;
-      let dialogAnimation = null;
-      let isClosing = false;
-
-      if (!dialog || !player || !title || !closeButton) return;
-
-      const zoomFrame = (sourceRect, targetRect, opacity, angle = 0) => {
-        const sourceX = sourceRect.left + (sourceRect.width / 2);
-        const sourceY = sourceRect.top + (sourceRect.height / 2);
-        const targetX = targetRect.left + (targetRect.width / 2);
-        const targetY = targetRect.top + (targetRect.height / 2);
-        const scale = Math.max(0.08, Math.min(1, sourceRect.width / targetRect.width));
-
-        return {
-          opacity,
-          transform: `translate(${sourceX - targetX}px, ${sourceY - targetY}px) scale(${scale}) rotate(${angle}deg)`,
-          transformOrigin: 'center center'
-        };
-      };
-
-      const clipMediaRect = () => activeClip
-        ?.querySelector('.stage-clip-media')
-        ?.getBoundingClientRect();
-
-      const clipAngle = () => Number.parseFloat(activeClip?.dataset.videoAngle || '0') || 0;
-
-      const closeDialog = () => {
-        if (!dialog.open || isClosing) return;
-
-        const sourceRect = clipMediaRect();
-        if (reducedMotion.matches || !sourceRect || !dialog.animate) {
-          dialog.close();
-          return;
-        }
-
-        isClosing = true;
-        player.pause();
-        const targetRect = dialog.getBoundingClientRect();
-        dialogAnimation?.cancel();
-        dialogAnimation = dialog.animate([
-          { opacity: 1, transform: 'translate(0, 0) scale(1)' },
-          zoomFrame(sourceRect, targetRect, 0.2, clipAngle())
-        ], {
-          duration: 340,
-          easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-          fill: 'both'
-        });
-
-        dialogAnimation.finished
-          .catch(() => {})
-          .then(() => dialog.close());
-      };
-
-      document.querySelectorAll('.stage-clip').forEach((clip) => {
-        clip.addEventListener('click', () => {
-          activeClip = clip;
-          player.poster = clip.dataset.videoPoster || '';
-          player.src = clip.dataset.videoSrc || '';
-          player.muted = clip.dataset.videoMuted === 'true';
-          title.textContent = clip.dataset.videoTitle || 'Robot field run';
-          dialog.showModal();
-
-          const sourceRect = clipMediaRect();
-          if (!reducedMotion.matches && sourceRect && dialog.animate) {
-            const targetRect = dialog.getBoundingClientRect();
-            dialogAnimation?.cancel();
-            dialogAnimation = dialog.animate([
-              zoomFrame(sourceRect, targetRect, 0.35, clipAngle()),
-              { opacity: 1, transform: 'translate(0, 0) scale(1)' }
-            ], {
-              duration: 500,
-              easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-              fill: 'none'
-            });
-          }
-
-          player.play().catch(() => {});
-        });
-      });
-
-      closeButton.addEventListener('click', closeDialog);
-      dialog.addEventListener('click', (event) => {
-        if (event.target === dialog) closeDialog();
-      });
-      dialog.addEventListener('cancel', (event) => {
-        event.preventDefault();
-        closeDialog();
-      });
-      dialog.addEventListener('close', () => {
-        dialogAnimation?.cancel();
-        dialogAnimation = null;
-        isClosing = false;
-        activeClip = null;
-        player.pause();
-        player.removeAttribute('src');
-        player.load();
-      });
-    })();
-  </script>
+      <section class="section how" aria-labelledby="how-label">
+        <p class="label" id="how-label">How</p>
+        <a class="how-link" href="notes.html">
+          <span class="how-link-main">
+            <span class="how-arrow" aria-hidden="true"><svg width="30" height="24" viewBox="0 0 30 24"><path d="M3 12 H26 M17 3 L26 12 L17 21" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            See how I work
+          </span>
+          <span class="how-count" data-note-count></span>
+        </a>
+      </section>
+    </main>
+  </div>
+  <script src="notes/notes.js"></script>
+  <script src="site.js"></script>
 </body>
 </html>

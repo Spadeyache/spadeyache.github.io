@@ -19,9 +19,13 @@ Use progressive disclosure. The home page tells the clearest research story; det
 
 ## Page roles
 
-- `index.html`: the main **What + How** story. Lead with the problem-solving process and enough evidence to make it believable.
-- `robot.html`: a deeper explanation of the robot: mechanics, electronics, software, diagrams, and supporting decisions. Avoid turning it into a list of specifications.
-- `simple.css`: the active shared visual system for the home and robot pages.
+- `index.html`: landing page. What -> Why (timeline) -> How (link to notes).
+- `notes.html`: list of notes, filterable by Hardcoded / Learned. Rendered from `notes/notes.js`.
+- `notes/*.html`: one file per note (Problem -> What I did -> Result -> Still hardcoded). Copy `notes/slope-line-following.html` to add one.
+- `notes/notes.js`: the single notes data list. Feeds the notes page, the landing count, and each note's "Next" link.
+- `robot.html`: deeper explanation of the robot (electronics, diagrams). Linked from the robot photo on the landing page.
+- `contact.html`: contact page.
+- `simple.css` + `site.js`: the active shared styles and behavior.
 - `index.archive.html`, `styles.css`, and `script.js`: older design work. Do not use or edit them unless the task explicitly asks to restore something from that version.
 
 ## Writing
@@ -37,9 +41,10 @@ Use progressive disclosure. The home page tells the clearest research story; det
 
 ## Visual direction
 
-The reference mood is warm, calm, natural, and editorial: cream, olive green, wood tones, generous space, and honest materials.
+The reference mood is warm, calm, natural, and editorial: beige, olive green, warm brown, generous space, and honest materials. Font: Figtree. Colors are the tokens at the top of `simple.css`; do not add new ones.
 
-- Burnt orange is welcome as a small accent because it connects to the robot.
+- Orange (`--hardcoded`) tags hardcoded adaptability; green (`--learned`) tags learned adaptability.
+
 - Use orange for focus, actions, or small markers, not as a dominant background.
 - Avoid glossy startup styling, dark sci-fi themes, neon colors, and crowded dashboards.
 - Let images and diagrams carry evidence, but always give them a clear purpose and caption.

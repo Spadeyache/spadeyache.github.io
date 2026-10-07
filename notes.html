@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Problems Kent Nakai has solved, and how close each one is to a robot solving it alone.">
+  <title>Kent Nakai &mdash; Notes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="simple.css?v=20261007-figtree">
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="site-title" href="index.html"><strong>Kent Nakai</strong><span> &mdash; what I chase, why, and how!</span></a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="notes.html" aria-current="page">Notes</a>
+        <a href="contact.html">Contact</a>
+        <a href="media/Kent-Nakai-Resume.pdf" download>R&eacute;sum&eacute; &darr;</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-intro" aria-labelledby="notes-headline">
+        <p class="label">Notes</p>
+        <h1 class="headline" id="notes-headline">Problems I&rsquo;ve solved, and how close each one is to a robot solving it alone.</h1>
+      </section>
+
+      <div class="filters" role="group" aria-label="Filter notes">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="hard" aria-pressed="false"><span class="square hard" aria-hidden="true"></span>Hardcoded</button>
+        <button type="button" data-filter="learned" aria-pressed="false"><span class="square learned" aria-hidden="true"></span>Learned</button>
+      </div>
+
+      <ul class="note-list" data-note-list></ul>
+    </main>
+  </div>
+  <script src="notes/notes.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>
