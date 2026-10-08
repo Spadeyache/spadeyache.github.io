@@ -117,30 +117,39 @@
       .catch(() => {});
   }
 
-  // Notes page: list and filters.
-  const list = document.querySelector('[data-note-list]');
-  if (list) {
+  // A row links to its note page, or straight out when the note has a link (a build post elsewhere).
+  const noteRow = ({ slug, meta }) => {
+    const href = meta.link || `note.html?n=${encodeURIComponent(slug)}`;
+    const row = el(meta.draft ? 'div' : 'a', 'note-row');
+    if (!meta.draft) row.href = href;
+
+    const title = el('span', 'title');
+    title.append(square(meta.kind), meta.title || slug);
+    const body = el('span', 'body');
+    body.append(title, el('span', 'project', meta.project));
+
+    const external = !meta.draft && meta.link;
+    const go = el('span', meta.draft ? 'go soon' : 'go', meta.draft ? 'Writing' : external ? '↗' : '→');
+    if (!meta.draft) go.setAttribute('aria-hidden', 'true');
+
+    row.append(el('span', 'date', meta.date), body, go);
+    const item = el('li');
+    item.append(row);
+    return item;
+  };
+
+  // Notes page: pinned research on top, build posts below, filters on both.
+  const groups = Array.from(document.querySelectorAll('[data-note-group]'));
+  if (groups.length) {
     loadNotes().then((notes) => {
       const render = (filter) => {
-        list.replaceChildren(...notes
-          .filter(({ meta }) => filter === 'all' || meta.kind === filter)
-          .map(({ slug, meta }) => {
-            const row = el(meta.draft ? 'div' : 'a', 'note-row');
-            if (!meta.draft) row.href = `note.html?n=${encodeURIComponent(slug)}`;
-
-            const title = el('span', 'title');
-            title.append(square(meta.kind), meta.title || slug);
-            const body = el('span', 'body');
-            body.append(title, el('span', 'project', meta.project));
-
-            const go = el('span', meta.draft ? 'go soon' : 'go', meta.draft ? 'Writing' : '→');
-            if (!meta.draft) go.setAttribute('aria-hidden', 'true');
-
-            row.append(el('span', 'date', meta.date), body, go);
-            const item = el('li');
-            item.append(row);
-            return item;
-          }));
+        groups.forEach((group) => {
+          const research = group.dataset.noteGroup === 'research';
+          const shown = notes.filter(({ meta }) => Boolean(meta.pinned) === research
+            && (filter === 'all' || meta.kind === filter));
+          group.querySelector('[data-note-list]').replaceChildren(...shown.map(noteRow));
+          group.hidden = shown.length === 0;
+        });
       };
 
       const buttons = Array.from(document.querySelectorAll('[data-filter]'));
@@ -151,7 +160,7 @@
         });
       });
       render('all');
-    }).catch(() => notesFailed(list));
+    }).catch(() => notesFailed(groups[0]));
   }
 
   // Note page: render note.md for ?n=<slug>.
@@ -194,7 +203,7 @@
       }
 
       const next = article.querySelector('[data-next-note]');
-      const following = notes.slice(index + 1).concat(notes.slice(0, index)).find((note) => !note.meta.draft);
+      const following = notes.slice(index + 1).concat(notes.slice(0, index)).find((note) => !note.meta.draft && !note.meta.link);
       if (following) {
         next.href = `note.html?n=${encodeURIComponent(following.slug)}`;
         next.textContent = `Next: ${following.meta.title} →`;

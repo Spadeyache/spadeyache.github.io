@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="simple.css?v=20261007-md-notes">
+  <link rel="stylesheet" href="simple.css?v=20261008-pinned">
 </head>
 <body>
   <div class="wrap">
@@ -33,7 +33,21 @@
         <button type="button" data-filter="learned" aria-pressed="false"><span class="square learned" aria-hidden="true"></span>Learned</button>
       </div>
 
-      <ul class="note-list" data-note-list></ul>
+      <section class="note-group" data-note-group="research" aria-labelledby="research-heading">
+        <div class="note-group-head">
+          <h2 class="label" id="research-heading">Research</h2>
+          <p>Pinned. The deep write-ups: what went wrong, what I ruled out, what I changed, and what showed it worked.</p>
+        </div>
+        <ul class="note-list" data-note-list></ul>
+      </section>
+
+      <section class="note-group" data-note-group="build" aria-labelledby="build-heading">
+        <div class="note-group-head">
+          <h2 class="label" id="build-heading">Building</h2>
+          <p>Shorter posts from the workbench, newest first.</p>
+        </div>
+        <ul class="note-list" data-note-list></ul>
+      </section>
     </main>
   </div>
   <script src="site.js"></script>

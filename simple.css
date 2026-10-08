@@ -322,6 +322,26 @@ video:focus-visible {
   border-top: 1px solid var(--text);
 }
 
+.note-group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 32px;
+  padding-bottom: 16px;
+}
+
+.note-group-head .label { flex: 0 0 136px; margin: 0; }
+
+.note-group-head p {
+  flex: 999 1 400px;
+  margin: 0;
+  color: var(--secondary);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.note-group[data-note-group="research"] .note-list { padding-bottom: 96px; }
+
 .note-row {
   display: flex;
   flex-wrap: wrap;
@@ -486,7 +506,8 @@ video:focus-visible {
   .section { padding-bottom: 64px; }
   .section > .label { padding-top: 48px; }
   .timeline .year,
-  .note-row .date { flex-basis: 100%; }
+  .note-row .date,
+  .note-group-head .label { flex-basis: 100%; }
   .timeline .title { flex: 1 1 0; }
   .timeline .detail { padding-left: 22px; }
   .note { padding: 48px 0 96px; }

@@ -2,6 +2,7 @@
 title: Following a path on slopes, where the robot slips
 date: "[DATE]"
 kind: hardcoded
+pinned: true
 project: RoboCupJunior Rescue
 keywords: [line following, PID, wheel slip, suspension]
 video: ../../media/video/slope-line-following.mp4
