@@ -8,11 +8,11 @@ Each note is a folder: `notes/<slug>/note.md`, plus any images or videos it uses
 2. Edit the metadata and text in `note.md`.
 3. Add the folder name to `notes.json`. Order there is the order on the Notes page.
 
-## Research vs. building
+## Investigations vs. building
 
-The Notes page has two rows:
+The Notes page has two sections:
 
-- **Research (pinned, top):** the deep write-ups. Add `pinned: true`.
+- **Investigations (top):** the deep write-ups. Add `pinned: true` and a one-sentence `summary`.
 - **Building (below):** frequent, shorter build posts. Leave `pinned` out.
   Put new build posts at the top of their part of `notes.json` so the newest shows first.
   To point a build post at Instagram or a video instead of a full note, add `link: <url>`.
@@ -24,7 +24,8 @@ The Notes page has two rows:
 title: Following a path on slopes, where the robot slips
 date: "2026-03"
 kind: hardcoded            # hardcoded (orange) or learned (green)
-pinned: true               # optional, puts the note in the top Research row
+pinned: true               # optional, puts the note under Investigations
+summary: One sentence.     # shown under an investigation's title
 link: https://...          # optional, the row links here instead of a note page
 project: RoboCupJunior Rescue
 keywords: [line following, PID, wheel slip]

@@ -3,6 +3,7 @@ title: Following a path on slopes, where the robot slips
 date: "[DATE]"
 kind: hardcoded
 pinned: true
+summary: On slopes it lost the line. I ruled out the camera, compared uphill with downhill turns, and traced it to the suspension absorbing the turn.
 project: RoboCupJunior Rescue
 keywords: [line following, PID, wheel slip, suspension]
 video: ../../media/video/slope-line-following.mp4

@@ -117,49 +117,57 @@
       .catch(() => {});
   }
 
-  // A row links to its note page, or straight out when the note has a link (a build post elsewhere).
-  const noteRow = ({ slug, meta }) => {
-    const href = meta.link || `note.html?n=${encodeURIComponent(slug)}`;
-    const row = el(meta.draft ? 'div' : 'a', 'note-row');
-    if (!meta.draft) row.href = href;
+  const noteHref = ({ slug, meta }) => meta.link || `note.html?n=${encodeURIComponent(slug)}`;
 
-    const title = el('span', 'title');
-    title.append(square(meta.kind), meta.title || slug);
-    const body = el('span', 'body');
-    body.append(title, el('span', 'project', meta.project));
+  const noteTitle = (note, tag, className) => {
+    const title = el(tag, className);
+    let text = note.meta.title || note.slug;
+    if (!note.meta.draft) {
+      text = el('a', '', text);
+      text.href = noteHref(note);
+    }
+    title.append(square(note.meta.kind), text);
+    return title;
+  };
 
-    const external = !meta.draft && meta.link;
-    const go = el('span', meta.draft ? 'go soon' : 'go', meta.draft ? 'Writing' : external ? '↗' : '→');
-    if (!meta.draft) go.setAttribute('aria-hidden', 'true');
-
-    row.append(el('span', 'date', meta.date), body, go);
-    const item = el('li');
-    item.append(row);
+  // Investigation: title, one-line summary, link. Drafts show "Writing".
+  const investigation = (note) => {
+    const item = el('article', `investigation${note.meta.draft ? ' draft' : ''}`);
+    item.append(noteTitle(note, 'h3', 'title'));
+    if (note.meta.summary) item.append(el('p', 'summary', note.meta.summary));
+    if (note.meta.draft) {
+      item.append(el('p', 'status', 'Writing'));
+    } else {
+      const more = el('a', '', note.meta.link ? 'Watch ↗' : 'Read the note →');
+      more.href = noteHref(note);
+      const line = el('p', 'more');
+      line.append(more);
+      item.append(line);
+    }
     return item;
   };
 
-  // Notes page: pinned research on top, build posts below, filters on both.
+  // Build post: one line. External links get ↗.
+  const buildRow = (note) => {
+    const item = el('li', note.meta.draft ? 'draft' : '');
+    item.append(noteTitle(note, 'span', 'title'));
+    const status = note.meta.draft ? 'Writing' : note.meta.link ? '↗' : '→';
+    const go = el('span', 'status', status);
+    if (!note.meta.draft) go.setAttribute('aria-hidden', 'true');
+    item.append(go);
+    return item;
+  };
+
+  // Notes page: pinned notes are investigations; the rest are build posts.
   const groups = Array.from(document.querySelectorAll('[data-note-group]'));
   if (groups.length) {
     loadNotes().then((notes) => {
-      const render = (filter) => {
-        groups.forEach((group) => {
-          const research = group.dataset.noteGroup === 'research';
-          const shown = notes.filter(({ meta }) => Boolean(meta.pinned) === research
-            && (filter === 'all' || meta.kind === filter));
-          group.querySelector('[data-note-list]').replaceChildren(...shown.map(noteRow));
-          group.hidden = shown.length === 0;
-        });
-      };
-
-      const buttons = Array.from(document.querySelectorAll('[data-filter]'));
-      buttons.forEach((button) => {
-        button.addEventListener('click', () => {
-          buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
-          render(button.dataset.filter);
-        });
+      groups.forEach((group) => {
+        const research = group.dataset.noteGroup === 'research';
+        const shown = notes.filter(({ meta }) => Boolean(meta.pinned) === research);
+        group.querySelector('[data-note-list]').replaceChildren(...shown.map(research ? investigation : buildRow));
+        group.hidden = shown.length === 0;
       });
-      render('all');
     }).catch(() => notesFailed(groups[0]));
   }
 

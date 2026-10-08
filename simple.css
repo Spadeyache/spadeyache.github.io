@@ -286,102 +286,100 @@ video:focus-visible {
   line-height: 1.1;
 }
 
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding-bottom: 32px;
+.notes-page {
+  max-width: 680px;
+  padding: 128px 0 160px;
 }
 
-.filters button {
+.notes-intro h1 {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.notes-sub {
+  margin: 16px 0 0;
+  color: var(--secondary);
+  font-size: 18px;
+}
+
+.notes-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 12px 0 0;
+  color: var(--secondary);
+  font-size: 15px;
+}
+
+.notes-key > span {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-height: 44px;
-  padding: 0 16px;
-  color: var(--text);
-  font: inherit;
-  font-size: 15px;
-  font-weight: 500;
-  background: transparent;
-  border: 1px solid var(--hairline);
-  border-radius: 6px;
-  cursor: pointer;
 }
 
-.filters button[aria-pressed="true"] {
-  color: var(--bg);
-  background: var(--text);
-  border-color: var(--text);
-}
+.notes-key .square { width: 8px; height: 8px; }
 
-.note-list {
+.note-group { margin-top: 112px; }
+.note-group + .note-group { margin-top: 128px; }
+
+.investigation + .investigation { margin-top: 64px; }
+
+.investigation .title,
+.build-list .title {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
   margin: 0;
-  padding: 0 0 128px;
+}
+
+.investigation .title {
+  margin-top: 40px;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.investigation .square { transform: translateY(-3px); }
+
+.investigation .title a,
+.build-list .title a { text-decoration: none; }
+
+.investigation .title a:hover,
+.build-list .title a:hover { color: var(--link-hover); }
+
+.investigation .summary,
+.investigation .more,
+.investigation .status {
+  margin: 14px 0 0 24px;
+}
+
+.investigation .summary { color: var(--secondary); line-height: 1.65; }
+.investigation .more { font-size: 15px; font-weight: 500; }
+.investigation .status { color: var(--secondary); font-size: 15px; }
+.investigation.draft .title { color: var(--secondary); }
+
+.build-list {
+  margin: 16px 0 0;
+  padding: 0;
   list-style: none;
-  border-top: 1px solid var(--text);
 }
 
-.note-group-head {
+.build-list li {
   display: flex;
-  flex-wrap: wrap;
   align-items: baseline;
-  gap: 8px 32px;
-  padding-bottom: 16px;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 0;
 }
 
-.note-group-head .label { flex: 0 0 136px; margin: 0; }
-
-.note-group-head p {
-  flex: 999 1 400px;
-  margin: 0;
-  color: var(--secondary);
-  font-size: 16px;
-  line-height: 1.55;
-}
-
-.note-group[data-note-group="research"] .note-list { padding-bottom: 96px; }
-
-.note-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 8px 32px;
-  padding: 32px 0;
-  border-bottom: 1px solid var(--hairline);
-  text-decoration: none;
-}
-
-.note-row .date {
-  flex: 0 0 136px;
-  color: var(--secondary);
-  font-size: 15px;
-}
-
-.note-row .body {
-  flex: 999 1 400px;
-  min-width: 0;
-}
-
-.note-row .title {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 21px;
-  font-weight: 500;
-  line-height: 1.35;
-}
-
-.note-row .project {
-  display: block;
-  margin: 8px 0 0 22px;
-  color: var(--secondary);
-  font-size: 16px;
-  line-height: 1.55;
-}
-
-.note-row .go { flex: 0 0 auto; }
-.note-row .go.soon { color: var(--secondary); font-size: 14px; }
+.build-list .title { flex: 1 1 auto; }
+.build-list .square { width: 8px; height: 8px; }
+.build-list .status { flex: 0 0 auto; color: var(--secondary); font-size: 14px; }
+.build-list .draft .title { color: var(--secondary); }
 
 /* Note page */
 
@@ -505,9 +503,15 @@ video:focus-visible {
   .media-row { grid-template-columns: 1fr; padding-bottom: 64px; }
   .section { padding-bottom: 64px; }
   .section > .label { padding-top: 48px; }
-  .timeline .year,
-  .note-row .date,
-  .note-group-head .label { flex-basis: 100%; }
+  .timeline .year { flex-basis: 100%; }
+  .notes-page { padding: 72px 0 96px; }
+  .notes-intro h1 { font-size: 32px; }
+  .note-group { margin-top: 80px; }
+  .note-group + .note-group { margin-top: 88px; }
+  .investigation .title { font-size: 23px; gap: 12px; }
+  .investigation .summary,
+  .investigation .more,
+  .investigation .status { margin-left: 22px; }
   .timeline .title { flex: 1 1 0; }
   .timeline .detail { padding-left: 22px; }
   .note { padding: 48px 0 96px; }

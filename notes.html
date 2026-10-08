@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Problems Kent Nakai has solved, and how close each one is to a robot solving it alone.">
+  <meta name="description" content="How Kent Nakai finds and fixes problems on robots.">
   <title>Kent Nakai &mdash; Notes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="simple.css?v=20261008-pinned">
+  <link rel="stylesheet" href="simple.css?v=20261008-notes-min">
 </head>
 <body>
   <div class="wrap">
@@ -21,32 +21,24 @@
       </nav>
     </header>
 
-    <main>
-      <section class="page-intro" aria-labelledby="notes-headline">
-        <p class="label">Notes</p>
-        <h1 class="headline" id="notes-headline">Problems I&rsquo;ve solved, and how close each one is to a robot solving it alone.</h1>
+    <main class="notes-page">
+      <section class="notes-intro" aria-labelledby="notes-headline">
+        <h1 id="notes-headline">Notes</h1>
+        <p class="notes-sub">How I find and fix problems on robots.</p>
+        <p class="notes-key">
+          <span><span class="square hardcoded" aria-hidden="true"></span>I hardcoded the fix</span>
+          <span><span class="square learned" aria-hidden="true"></span>The robot learned it</span>
+        </p>
       </section>
 
-      <div class="filters" role="group" aria-label="Filter notes">
-        <button type="button" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" data-filter="hardcoded" aria-pressed="false"><span class="square hardcoded" aria-hidden="true"></span>Hardcoded</button>
-        <button type="button" data-filter="learned" aria-pressed="false"><span class="square learned" aria-hidden="true"></span>Learned</button>
-      </div>
-
       <section class="note-group" data-note-group="research" aria-labelledby="research-heading">
-        <div class="note-group-head">
-          <h2 class="label" id="research-heading">Research</h2>
-          <p>Pinned. The deep write-ups: what went wrong, what I ruled out, what I changed, and what showed it worked.</p>
-        </div>
-        <ul class="note-list" data-note-list></ul>
+        <h2 class="label" id="research-heading">Investigations</h2>
+        <div class="investigations" data-note-list></div>
       </section>
 
       <section class="note-group" data-note-group="build" aria-labelledby="build-heading">
-        <div class="note-group-head">
-          <h2 class="label" id="build-heading">Building</h2>
-          <p>Shorter posts from the workbench, newest first.</p>
-        </div>
-        <ul class="note-list" data-note-list></ul>
+        <h2 class="label" id="build-heading">Building</h2>
+        <ul class="build-list" data-note-list></ul>
       </section>
     </main>
   </div>
