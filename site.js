@@ -220,4 +220,71 @@
       }
     }).catch(() => notesFailed(article.querySelector('[data-note-body]')));
   }
+
+  // Home: floating clips open in a dialog, zooming from the clip.
+  const dialog = document.querySelector('#video-dialog');
+  if (dialog) {
+    const player = dialog.querySelector('video');
+    const caption = dialog.querySelector('#video-dialog-title');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let activeClip = null;
+    let animation = null;
+    let closing = false;
+
+    const clipRect = () => activeClip && activeClip.querySelector('.stage-clip-media').getBoundingClientRect();
+    const clipAngle = () => Number.parseFloat(activeClip && activeClip.dataset.videoAngle) || 0;
+    const zoomFrom = (source, target, opacity) => {
+      const dx = (source.left + source.width / 2) - (target.left + target.width / 2);
+      const dy = (source.top + source.height / 2) - (target.top + target.height / 2);
+      const scale = Math.max(0.08, Math.min(1, source.width / target.width));
+      return { opacity, transform: `translate(${dx}px, ${dy}px) scale(${scale}) rotate(${clipAngle()}deg)` };
+    };
+    const canAnimate = () => !reducedMotion.matches && activeClip && dialog.animate;
+
+    const closeDialog = () => {
+      if (!dialog.open || closing) return;
+      if (!canAnimate()) { dialog.close(); return; }
+      closing = true;
+      player.pause();
+      if (animation) animation.cancel();
+      animation = dialog.animate([
+        { opacity: 1, transform: 'none' },
+        zoomFrom(clipRect(), dialog.getBoundingClientRect(), 0.2),
+      ], { duration: 340, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', fill: 'both' });
+      animation.finished.catch(() => {}).then(() => dialog.close());
+    };
+
+    document.querySelectorAll('.stage-clip').forEach((clip) => {
+      clip.setAttribute('aria-label', `Play video: ${clip.dataset.videoTitle}`);
+      clip.addEventListener('click', () => {
+        activeClip = clip;
+        player.poster = clip.dataset.videoPoster || '';
+        player.src = clip.dataset.videoSrc || '';
+        caption.textContent = clip.dataset.videoTitle || '';
+        dialog.showModal();
+        if (canAnimate()) {
+          if (animation) animation.cancel();
+          animation = dialog.animate([
+            zoomFrom(clipRect(), dialog.getBoundingClientRect(), 0.35),
+            { opacity: 1, transform: 'none' },
+          ], { duration: 500, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' });
+        }
+        player.play().catch(() => {});
+      });
+    });
+
+    dialog.querySelector('.video-dialog-close').addEventListener('click', closeDialog);
+    dialog.addEventListener('click', (event) => { if (event.target === dialog) closeDialog(); });
+    dialog.addEventListener('cancel', (event) => { event.preventDefault(); closeDialog(); });
+    dialog.addEventListener('close', () => {
+      if (animation) animation.cancel();
+      animation = null;
+      closing = false;
+      if (activeClip) activeClip.focus();
+      activeClip = null;
+      player.pause();
+      player.removeAttribute('src');
+      player.load();
+    });
+  }
 })();

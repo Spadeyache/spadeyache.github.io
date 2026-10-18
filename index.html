@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="simple.css?v=20261008-notes-min">
+  <link rel="stylesheet" href="simple.css?v=20261018-stage">
 </head>
 <body>
   <div class="wrap">
@@ -28,30 +28,45 @@
         <p class="sub">Computer Engineering at NYU Tandon. Eleven years of competitive robotics, building since age nine.</p>
       </section>
 
-      <section class="media-row" aria-label="The robot and two field runs">
-        <figure>
-          <a class="media-frame" href="robot.html" aria-label="Rescue robot: see inside the robot">
-            <img class="robot-photo" src="media/img/robot.png" width="1395" height="1236" alt="The rescue robot: a compact four-wheel robot with an orange frame, blue wheels, and exposed wiring" decoding="async">
-          </a>
-          <figcaption>Rescue robot, RoboCupJunior</figcaption>
-        </figure>
-        <figure>
-          <div class="media-frame">
-            <video controls playsinline preload="none" poster="media/video/slope-line-following-first.png" aria-label="Line following on slope transitions">
-              <source src="media/video/slope-line-following.mp4" type="video/mp4">
-            </video>
-          </div>
-          <figcaption>Line following on slope transitions</figcaption>
-        </figure>
-        <figure>
-          <div class="media-frame">
-            <video controls playsinline preload="none" poster="media/video/victim-zone-47.png" aria-label="Detection, manipulation and navigation">
-              <source src="media/video/victim-zone.mp4" type="video/mp4">
-            </video>
-          </div>
-          <figcaption>Detection, manipulation and navigation</figcaption>
-        </figure>
+      <section class="robot-stage" aria-label="The robot and two field runs">
+        <a class="stage-robot" href="robot.html" aria-label="Rescue robot: see inside the robot">
+          <img src="media/img/robot.png" width="1395" height="1236" alt="The rescue robot: a compact four-wheel robot with an orange frame, blue wheels, and exposed wiring" decoding="async">
+        </a>
+
+        <button class="stage-clip stage-clip-left" type="button"
+          data-video-src="media/video/slope-line-following.mp4"
+          data-video-poster="media/video/slope-line-following-first.png"
+          data-video-title="Following the line through a flat-to-slope transition."
+          data-video-angle="-2">
+          <span class="stage-clip-media">
+            <img src="media/video/slope-line-following-first.png" alt="" loading="lazy" decoding="async">
+            <span class="stage-clip-label"><span class="stage-play" aria-hidden="true">&#9654;</span>Line following on slope transitions</span>
+          </span>
+        </button>
+
+        <button class="stage-clip stage-clip-right" type="button"
+          data-video-src="media/video/victim-zone.mp4"
+          data-video-poster="media/video/victim-zone-47.png"
+          data-video-title="Finding, retrieving, and relocating a victim."
+          data-video-angle="2">
+          <span class="stage-clip-media">
+            <img src="media/video/victim-zone-47.png" alt="" loading="lazy" decoding="async">
+            <span class="stage-clip-label"><span class="stage-play" aria-hidden="true">&#9654;</span>Detection, manipulation and navigation</span>
+          </span>
+        </button>
+
+        <a class="stage-link" href="robot.html">See inside the robot <span aria-hidden="true">&rarr;</span></a>
       </section>
+
+      <dialog class="video-dialog" id="video-dialog" aria-labelledby="video-dialog-title">
+        <div class="video-dialog-shell">
+          <video id="video-dialog-player" controls playsinline preload="none"></video>
+          <div class="video-dialog-caption">
+            <p id="video-dialog-title"></p>
+            <button class="video-dialog-close" type="button">Close</button>
+          </div>
+        </div>
+      </dialog>
 
       <section class="section" aria-labelledby="why-label">
         <p class="label" id="why-label">Why</p>

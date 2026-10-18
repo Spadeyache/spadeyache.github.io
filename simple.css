@@ -121,10 +121,7 @@ video:focus-visible {
 .square.learned { background: var(--learned); }
 .square.none { background: transparent; }
 
-.section {
-  padding: 0 0 96px;
-  border-top: 1px solid var(--hairline);
-}
+.section { padding: 0 0 96px; }
 
 .section > .label { padding-top: 64px; }
 
@@ -132,40 +129,178 @@ video:focus-visible {
 
 .what { padding: 112px 0 64px; }
 
-.media-row {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 32px;
-  padding: 0 0 96px;
+/* Robot with two floating field-run clips. Clips open in a dialog. */
+
+.robot-stage {
+  position: relative;
+  min-height: 560px;
+  margin-bottom: 96px;
 }
 
-.media-row figure { margin: 0; }
+.stage-robot {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: min(54%, 600px);
+  transform: translate(-50%, -50%);
+}
 
-.media-frame {
+.stage-robot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.stage-clip {
+  position: absolute;
+  z-index: 2;
+  width: min(31%, 340px);
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.stage-clip-left { top: 72px; left: 0; transform: rotate(-2deg); }
+.stage-clip-right { right: 0; bottom: 64px; transform: rotate(2deg); }
+
+.stage-clip-media {
+  position: relative;
   display: block;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   background: var(--placeholder);
-  border-radius: 6px;
+  border-radius: 12px;
+  box-shadow: 0 22px 44px rgba(79, 87, 32, 0.2);
+  transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.media-frame img,
-.media-frame video {
-  display: block;
+.stage-clip-media > img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.media-frame .robot-photo {
-  padding: 16px;
+.stage-clip-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.stage-clip-label {
+  position: absolute;
+  z-index: 1;
+  bottom: 12px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.stage-play {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding-left: 2px;
+  color: #fff;
+  font-size: 10px;
+  background: var(--hardcoded);
+  border-radius: 50%;
+}
+
+.stage-clip:hover .stage-clip-media {
+  box-shadow: 0 26px 48px rgba(79, 87, 32, 0.26);
+  transform: translateY(-2px);
+}
+
+.stage-clip:focus-visible { outline: none; }
+
+.stage-clip:focus-visible .stage-clip-media {
+  outline: 2px solid var(--hardcoded);
+  outline-offset: 4px;
+}
+
+.stage-link {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  bottom: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.video-dialog {
+  width: min(960px, calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100% - 32px);
+  padding: 0;
+  overflow: visible;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+}
+
+.video-dialog::backdrop {
+  background: rgba(233, 223, 201, 0.95);
+  animation: video-backdrop-in 160ms ease-out;
+}
+
+.video-dialog-shell { display: grid; gap: 12px; }
+
+.video-dialog-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.video-dialog-caption p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.video-dialog-close {
+  min-height: 44px;
+  padding: 0;
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.video-dialog-close:hover { color: var(--link-hover); }
+
+.video-dialog video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 96px);
+  aspect-ratio: 16 / 10;
+  border-radius: 8px;
   object-fit: contain;
 }
 
-.media-row figcaption {
-  margin-top: 16px;
-  font-size: 15px;
-  line-height: 1.5;
+@keyframes video-backdrop-in {
+  from { background: rgba(233, 223, 201, 0); }
 }
 
 /* Landing: WHY */
@@ -463,8 +598,6 @@ video:focus-visible {
   justify-content: space-between;
   gap: 16px;
   margin-top: 64px;
-  padding-top: 32px;
-  border-top: 1px solid var(--hairline);
   font-size: 15px;
   font-weight: 500;
 }
@@ -500,7 +633,20 @@ video:focus-visible {
   .site-nav { gap: 24px; }
   .what { padding: 64px 0 48px; }
   .page-intro { padding: 64px 0 48px; }
-  .media-row { grid-template-columns: 1fr; padding-bottom: 64px; }
+  .robot-stage {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    min-height: 0;
+    margin-bottom: 64px;
+  }
+  .stage-robot,
+  .stage-clip,
+  .stage-link { position: static; width: auto; transform: none; }
+  .stage-robot { grid-column: 1 / -1; width: 88%; justify-self: center; }
+  .stage-clip-label { font-size: 12px; bottom: 8px; left: 10px; right: 10px; gap: 8px; }
+  .stage-link { grid-column: 1 / -1; margin-top: 8px; }
+  .video-dialog { width: calc(100% - 20px); }
   .section { padding-bottom: 64px; }
   .section > .label { padding-top: 48px; }
   .timeline .year { flex-basis: 100%; }
@@ -519,6 +665,8 @@ video:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .video-dialog::backdrop { animation: none; }
+  .stage-clip-media { transition: none; }
   .how-arrow { transition: none; }
   .how-link:hover .how-arrow { transform: none; }
 }
