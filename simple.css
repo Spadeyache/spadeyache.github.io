@@ -129,6 +129,12 @@ video:focus-visible {
 
 .what { padding: 112px 0 64px; }
 
+/* Even line lengths so the opener reads as one clean block. */
+.what .headline {
+  max-width: 760px;
+  text-wrap: balance;
+}
+
 /* Why: on large screens the robot sits beside the sentence as an overlay,
    with a hand-drawn arrow to "hardcoding adaptability". Hidden on smaller screens. */
 
