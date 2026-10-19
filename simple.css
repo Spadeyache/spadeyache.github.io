@@ -129,44 +129,68 @@ video:focus-visible {
 
 .what { padding: 112px 0 64px; }
 
-/* Robot with two floating field-run clips. Clips open in a dialog. */
+/* Why: on large screens the robot sits beside the sentence as an overlay,
+   with a hand-drawn arrow to "hardcoding adaptability". Hidden on smaller screens. */
 
-.robot-stage {
-  position: relative;
-  min-height: 560px;
-  margin-bottom: 96px;
+.why-body { position: relative; }
+
+.why-robot { display: none; }
+
+@media (min-width: 1200px) {
+  .why-robot {
+    position: absolute;
+    top: -110px;
+    right: -80px;
+    display: block;
+    width: 300px;
+    height: 250px;
+    margin: 0;
+  }
 }
 
-.stage-robot {
+.why-robot-photo {
   position: absolute;
   z-index: 1;
-  top: 50%;
-  left: 50%;
-  width: min(54%, 600px);
-  transform: translate(-50%, -50%);
+  top: 34px;
+  left: 44px;
+  width: 220px;
 }
 
-.stage-robot img {
+.why-robot-photo img {
   display: block;
   width: 100%;
   height: auto;
 }
 
+.why-arrow {
+  position: absolute;
+  top: 70px;
+  left: -270px;
+  width: 300px;
+  height: 120px;
+  overflow: visible;
+  fill: none;
+  stroke: var(--hardcoded);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
 .stage-clip {
   position: absolute;
   z-index: 2;
-  width: min(31%, 340px);
+  width: 130px;
   padding: 0;
   color: inherit;
   font: inherit;
-  text-align: left;
   background: none;
   border: 0;
   cursor: pointer;
 }
 
-.stage-clip-left { top: 72px; left: 0; transform: rotate(-2deg); }
-.stage-clip-right { right: 0; bottom: 64px; transform: rotate(2deg); }
+.stage-clip-left { top: 0; right: 0; transform: rotate(2deg); }
+.stage-clip-right { bottom: 0; left: 0; transform: rotate(-2deg); }
 
 .stage-clip-media {
   position: relative;
@@ -174,8 +198,8 @@ video:focus-visible {
   overflow: hidden;
   aspect-ratio: 16 / 10;
   background: var(--placeholder);
-  border-radius: 12px;
-  box-shadow: 0 22px 44px rgba(79, 87, 32, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 16px 32px rgba(79, 87, 32, 0.22);
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
@@ -187,43 +211,23 @@ video:focus-visible {
   object-fit: cover;
 }
 
-.stage-clip-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, 0.6) 100%);
-}
-
-.stage-clip-label {
-  position: absolute;
-  z-index: 1;
-  bottom: 12px;
-  left: 14px;
-  right: 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.25;
-}
+/* The clip's title is its aria-label; at this size only the play mark shows. */
+.stage-clip-label { position: absolute; bottom: 7px; left: 7px; font-size: 0; }
 
 .stage-play {
-  flex: 0 0 auto;
   display: grid;
   place-items: center;
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
   padding-left: 2px;
   color: #fff;
-  font-size: 10px;
+  font-size: 9px;
   background: var(--hardcoded);
   border-radius: 50%;
 }
 
 .stage-clip:hover .stage-clip-media {
-  box-shadow: 0 26px 48px rgba(79, 87, 32, 0.26);
+  box-shadow: 0 20px 38px rgba(79, 87, 32, 0.28);
   transform: translateY(-2px);
 }
 
@@ -232,15 +236,6 @@ video:focus-visible {
 .stage-clip:focus-visible .stage-clip-media {
   outline: 2px solid var(--hardcoded);
   outline-offset: 4px;
-}
-
-.stage-link {
-  position: absolute;
-  z-index: 2;
-  left: 0;
-  bottom: 0;
-  font-size: 15px;
-  font-weight: 500;
 }
 
 .video-dialog {
@@ -633,19 +628,6 @@ video:focus-visible {
   .site-nav { gap: 24px; }
   .what { padding: 64px 0 48px; }
   .page-intro { padding: 64px 0 48px; }
-  .robot-stage {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-    min-height: 0;
-    margin-bottom: 64px;
-  }
-  .stage-robot,
-  .stage-clip,
-  .stage-link { position: static; width: auto; transform: none; }
-  .stage-robot { grid-column: 1 / -1; width: 88%; justify-self: center; }
-  .stage-clip-label { font-size: 12px; bottom: 8px; left: 10px; right: 10px; gap: 8px; }
-  .stage-link { grid-column: 1 / -1; margin-top: 8px; }
   .video-dialog { width: calc(100% - 20px); }
   .section { padding-bottom: 64px; }
   .section > .label { padding-top: 48px; }

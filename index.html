@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="simple.css?v=20261018-stage">
+  <link rel="stylesheet" href="simple.css?v=20261019-why-robot">
 </head>
 <body>
   <div class="wrap">
@@ -25,37 +25,6 @@
       <section class="what" aria-labelledby="what-headline">
         <p class="label">What</p>
         <h1 class="headline" id="what-headline">I build robots that learn to adapt on their own, at deployment.</h1>
-        <p class="sub">For RoboCupJunior, I hardcoded every adaptation: this rescue robot handles slopes and victims because I tuned each case myself. In my research, I’m working on robots that find their own failures.</p>
-      </section>
-
-      <section class="robot-stage" aria-label="The robot and two field runs">
-        <a class="stage-robot" href="robot.html" aria-label="Rescue robot: see inside the robot">
-          <img src="media/img/robot.png" width="1395" height="1236" alt="The rescue robot: a compact four-wheel robot with an orange frame, blue wheels, and exposed wiring" decoding="async">
-        </a>
-
-        <button class="stage-clip stage-clip-left" type="button"
-          data-video-src="media/video/slope-line-following.mp4"
-          data-video-poster="media/video/slope-line-following-first.png"
-          data-video-title="Following the line through a flat-to-slope transition."
-          data-video-angle="-2">
-          <span class="stage-clip-media">
-            <img src="media/video/slope-line-following-first.png" alt="" loading="lazy" decoding="async">
-            <span class="stage-clip-label"><span class="stage-play" aria-hidden="true">&#9654;</span>Line following on slope transitions</span>
-          </span>
-        </button>
-
-        <button class="stage-clip stage-clip-right" type="button"
-          data-video-src="media/video/victim-zone.mp4"
-          data-video-poster="media/video/victim-zone-47.png"
-          data-video-title="Finding, retrieving, and relocating a victim."
-          data-video-angle="2">
-          <span class="stage-clip-media">
-            <img src="media/video/victim-zone-47.png" alt="" loading="lazy" decoding="async">
-            <span class="stage-clip-label"><span class="stage-play" aria-hidden="true">&#9654;</span>Detection, manipulation and navigation</span>
-          </span>
-        </button>
-
-        <a class="stage-link" href="robot.html">See inside the robot <span aria-hidden="true">&rarr;</span></a>
       </section>
 
       <dialog class="video-dialog" id="video-dialog" aria-labelledby="video-dialog-title">
@@ -70,7 +39,41 @@
 
       <section class="section" aria-labelledby="why-label">
         <p class="label" id="why-label">Why</p>
-        <p class="why-statement">I&rsquo;ve spent my life <span class="mark-hard">hardcoding adaptability</span>, into robots and into myself through field hockey. What excites me is machines that can <span class="mark-learned">learn it</span> the way I had to.</p>
+        <div class="why-body">
+          <p class="why-statement">I&rsquo;ve spent my life <span class="mark-hard">hardcoding adaptability</span>, into robots and into myself through field hockey. What excites me is machines that can <span class="mark-learned">learn it</span> the way I had to.</p>
+
+          <!-- Large screens only: the robot as evidence for "hardcoding adaptability". -->
+          <figure class="why-robot" aria-label="My RoboCupJunior rescue robot and two field runs">
+            <svg class="why-arrow" viewBox="0 0 300 120" aria-hidden="true" focusable="false">
+              <path d="M298 64 C286 60 276 68 280 77 C284 86 298 80 293 69 C288 54 262 30 230 18 C180 0 100 4 58 32" />
+              <path d="M73 31 L58 32 L64 19" />
+            </svg>
+            <a class="why-robot-photo" href="robot.html" aria-label="Rescue robot: see inside the robot">
+              <img src="media/img/robot.png" width="1395" height="1236" alt="My RoboCupJunior rescue robot: a compact four-wheel robot with an orange frame, blue wheels, and exposed wiring" decoding="async">
+            </a>
+            <button class="stage-clip stage-clip-left" type="button"
+              data-video-src="media/video/slope-line-following.mp4"
+              data-video-poster="media/video/slope-line-following-first.png"
+              data-video-title="Following the line through a flat-to-slope transition."
+              data-video-angle="-2">
+              <span class="stage-clip-media">
+                <img src="media/video/slope-line-following-first.png" alt="" loading="lazy" decoding="async">
+                <span class="stage-clip-label"><span class="stage-play" aria-hidden="true">&#9654;</span>Line following on slope transitions</span>
+              </span>
+            </button>
+
+            <button class="stage-clip stage-clip-right" type="button"
+              data-video-src="media/video/victim-zone.mp4"
+              data-video-poster="media/video/victim-zone-47.png"
+              data-video-title="Finding, retrieving, and relocating a victim."
+              data-video-angle="2">
+              <span class="stage-clip-media">
+                <img src="media/video/victim-zone-47.png" alt="" loading="lazy" decoding="async">
+                <span class="stage-clip-label"><span class="stage-play" aria-hidden="true">&#9654;</span>Detection, manipulation and navigation</span>
+              </span>
+            </button>
+          </figure>
+        </div>
 
         <ol class="timeline">
           <li>
