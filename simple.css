@@ -189,8 +189,9 @@ video:focus-visible {
   cursor: pointer;
 }
 
-.stage-clip-left { top: 0; right: 0; transform: rotate(2deg); }
-.stage-clip-right { bottom: 0; left: 0; transform: rotate(-2deg); }
+/* Stacked at the top right: the victim-zone clip sits behind, a little lower and to the right. */
+.stage-clip-left { top: 0; right: 26px; z-index: 3; transform: rotate(2deg); }
+.stage-clip-right { top: 24px; right: 0; transform: rotate(-3deg); }
 
 .stage-clip-media {
   position: relative;
