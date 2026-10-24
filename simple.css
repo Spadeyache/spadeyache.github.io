@@ -385,11 +385,39 @@ video:focus-visible {
 
 .timeline .detail {
   max-width: 640px;
-  margin: 0 0 24px;
   padding-left: 190px;
   color: var(--secondary);
   font-size: 16px;
   line-height: 1.6;
+  /* Slides between 0fr and 1fr, so it opens to the text's natural height.
+     Visibility flips after closing, keeping closed rows out of tab order. */
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition: grid-template-rows 0.18s cubic-bezier(0.2, 0, 0, 1), visibility 0s 0.18s;
+}
+
+.timeline .detail.is-open {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.18s cubic-bezier(0.2, 0, 0, 1), visibility 0s;
+}
+
+.timeline .detail p {
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.timeline .detail.is-open p { opacity: 1; }
+
+/* Bottom spacing inside the clipped text, so it collapses too. */
+.timeline .detail p::after {
+  content: "";
+  display: block;
+  height: 24px;
 }
 
 /* Landing: HOW */
@@ -727,6 +755,8 @@ video:focus-visible {
   .video-dialog::backdrop { animation: none; }
   .stage-clip-media { transition: none; }
   .how-arrow { transition: none; }
+  .timeline .detail,
+  .timeline .detail p { transition: none; }
   .how-link:hover .how-arrow { transform: none; }
 }
 

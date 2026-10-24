@@ -103,7 +103,7 @@
         const isThis = other === button && opening;
         other.setAttribute('aria-expanded', String(isThis));
         other.querySelector('.sign').textContent = isThis ? '−' : '+';
-        document.getElementById(other.getAttribute('aria-controls')).hidden = !isThis;
+        document.getElementById(other.getAttribute('aria-controls')).classList.toggle('is-open', isThis);
       });
     });
   });
