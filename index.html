@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="simple.css?v=20261024-what-crop">
+  <link rel="stylesheet" href="simple.css?v=20261024-what-beige">
 </head>
 <body>
   <div class="wrap">
@@ -24,15 +24,13 @@
     <main>
       <section class="what" aria-labelledby="what-headline">
         <p class="label">What</p>
+        <video class="what-video" data-loop-video muted loop playsinline preload="metadata"
+          poster="media/video/learning-as-it-goes-first.png?v=beige3"
+          width="864" height="598"
+          aria-label="A simulated robot arm notices a cube slipping, adjusts its grip until it holds, then uses a different grasp on a new object.">
+          <source src="media/video/learning-as-it-goes.mp4?v=beige3" type="video/mp4">
+        </video>
         <h1 class="headline" id="what-headline">I study how robots keep learning about the physical world through interaction after deployment.</h1>
-        <figure class="what-video">
-          <video data-loop-video muted loop playsinline preload="metadata"
-            poster="media/video/learning-as-it-goes-first.png"
-            width="864" height="598"
-            aria-label="A simulated robot arm notices a cube slipping, adjusts its grip until it holds, then uses a different grasp on a new object.">
-            <source src="media/video/learning-as-it-goes.mp4" type="video/mp4">
-          </video>
-        </figure>
       </section>
 
       <dialog class="video-dialog" id="video-dialog" aria-labelledby="video-dialog-title">
@@ -160,6 +158,6 @@
       </section>
     </main>
   </div>
-  <script src="site.js"></script>
+  <script src="site.js?v=20261024-simple"></script>
 </body>
 </html>

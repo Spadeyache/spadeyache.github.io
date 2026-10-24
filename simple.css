@@ -135,22 +135,19 @@ video:focus-visible {
   text-wrap: balance;
 }
 
-/* The clip sits below the headline, just left of center. */
+/* The clip, centered above the headline. */
 .what-video {
-  max-width: 600px;
-  margin: 64px 0 0 12%;
-}
-
-.what-video video {
   display: block;
   width: 100%;
+  max-width: 600px;
   height: auto;
-  /* Drop the clip's bottom 6px of blank padding (598 -> 592, a multiple of 16).
-     Some hardware decoders draw a stray line along that cropped edge. */
-  aspect-ratio: 864 / 592;
-  object-fit: cover;
-  object-position: top;
-  border-radius: 6px;
+  margin: 32px auto 0;
+  /* The clip's background is recoloured to the page beige; soft edges hide the
+     small colour shifts browsers add when drawing video. */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 1.5%, #000 98.5%, transparent), linear-gradient(to bottom, transparent, #000 4%, #000 97%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 1.5%, #000 98.5%, transparent), linear-gradient(to bottom, transparent, #000 4%, #000 97%, transparent);
+  mask-composite: intersect;
 }
 
 /* Why: on large screens the robot sits beside the sentence as an overlay,
@@ -706,7 +703,6 @@ video:focus-visible {
 
   .site-nav { gap: 24px; }
   .what { padding: 64px 0 48px; }
-  .what-video { margin: 40px 0 0; }
   .page-intro { padding: 64px 0 48px; }
   .video-dialog { width: calc(100% - 20px); }
   .section { padding-bottom: 64px; }
