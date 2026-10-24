@@ -127,12 +127,30 @@ video:focus-visible {
 
 /* Landing: WHAT */
 
-.what { padding: 112px 0 64px; }
+.what { padding: 112px 0 96px; }
 
 /* Even line lengths so the opener reads as one clean block. */
 .what .headline {
-  max-width: 760px;
+  max-width: 900px;
   text-wrap: balance;
+}
+
+/* The clip sits below the headline, just left of center. */
+.what-video {
+  max-width: 600px;
+  margin: 64px 0 0 12%;
+}
+
+.what-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Drop the clip's bottom 6px of blank padding (598 -> 592, a multiple of 16).
+     Some hardware decoders draw a stray line along that cropped edge. */
+  aspect-ratio: 864 / 592;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 6px;
 }
 
 /* Why: on large screens the robot sits beside the sentence as an overlay,
@@ -413,6 +431,60 @@ video:focus-visible {
   font-size: 15px;
 }
 
+/* Latest paper, laid out like a paper's landing page: teaser beside title and summary. */
+
+.paper {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  align-items: start;
+  max-width: 820px;
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--hairline);
+}
+
+.paper-teaser {
+  aspect-ratio: 4 / 3;
+  background: var(--placeholder);
+  border-radius: 6px;
+}
+
+.paper-kicker {
+  margin: 0;
+  color: var(--secondary);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.paper-title {
+  margin: 12px 0 0;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+.paper-meta {
+  margin: 8px 0 0;
+  color: var(--secondary);
+  font-size: 15px;
+}
+
+.paper-summary {
+  margin: 16px 0 0;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.paper-links {
+  margin: 16px 0 0;
+  color: var(--secondary);
+  font-size: 15px;
+}
+
 /* Notes list */
 
 .page-intro { padding: 128px 0 64px; }
@@ -634,11 +706,13 @@ video:focus-visible {
 
   .site-nav { gap: 24px; }
   .what { padding: 64px 0 48px; }
+  .what-video { margin: 40px 0 0; }
   .page-intro { padding: 64px 0 48px; }
   .video-dialog { width: calc(100% - 20px); }
   .section { padding-bottom: 64px; }
   .section > .label { padding-top: 48px; }
   .timeline .year { flex-basis: 100%; }
+  .paper { grid-template-columns: 1fr; gap: 24px; margin-top: 48px; }
   .notes-page { padding: 72px 0 96px; }
   .notes-intro h1 { font-size: 32px; }
   .note-group { margin-top: 80px; }

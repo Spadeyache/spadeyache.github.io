@@ -221,6 +221,15 @@
     }).catch(() => notesFailed(article.querySelector('[data-note-body]')));
   }
 
+  // Home: short explainer loops play silently, unless motion is reduced.
+  document.querySelectorAll('[data-loop-video]').forEach((video) => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      video.controls = true;
+    } else {
+      video.play().catch(() => { video.controls = true; });
+    }
+  });
+
   // Home: floating clips open in a dialog, zooming from the clip.
   const dialog = document.querySelector('#video-dialog');
   if (dialog) {

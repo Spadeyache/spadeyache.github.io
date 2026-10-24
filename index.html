@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Kent Nakai studies how robots adapt by forming and revising assumptions about the world.">
+  <meta name="description" content="Kent Nakai studies how robots keep learning about the physical world through interaction after deployment.">
   <title>Kent Nakai &mdash; what I chase, why, and how</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="simple.css?v=20261019-headline">
+  <link rel="stylesheet" href="simple.css?v=20261024-what-crop">
 </head>
 <body>
   <div class="wrap">
@@ -24,7 +24,15 @@
     <main>
       <section class="what" aria-labelledby="what-headline">
         <p class="label">What</p>
-        <h1 class="headline" id="what-headline">I study how robots adapt by forming and revising assumptions about the world.</h1>
+        <h1 class="headline" id="what-headline">I study how robots keep learning about the physical world through interaction after deployment.</h1>
+        <figure class="what-video">
+          <video data-loop-video muted loop playsinline preload="metadata"
+            poster="media/video/learning-as-it-goes-first.png"
+            width="864" height="598"
+            aria-label="A simulated robot arm notices a cube slipping, adjusts its grip until it holds, then uses a different grasp on a new object.">
+            <source src="media/video/learning-as-it-goes.mp4" type="video/mp4">
+          </video>
+        </figure>
       </section>
 
       <dialog class="video-dialog" id="video-dialog" aria-labelledby="video-dialog-title">
@@ -90,7 +98,7 @@
               <span class="title"><span class="square hardcoded" role="img" aria-label="Hardcoded"></span>RoboCupJunior, captain of Team FATEN</span>
               <span class="sign" aria-hidden="true">+</span>
             </button>
-            <p class="detail" id="t2" hidden>Every run, the robot meets a field it hasn&rsquo;t seen. [KEY RESULT]</p>
+            <p class="detail" id="t2" hidden>Every run, the robot meets a field it hasn&rsquo;t seen. [KEY RESULT] <a href="https://faten-1tdj.vercel.app/en/index.html" target="_blank" rel="noopener">Team FATEN&rsquo;s site &rarr;</a></p>
           </li>
           <li>
             <button type="button" aria-expanded="false" aria-controls="t3">
@@ -136,6 +144,19 @@
           </span>
           <span class="how-count" data-note-count></span>
         </a>
+
+        <!-- Latest paper: hidden until the paper exists.
+        <article class="paper" aria-labelledby="paper-title">
+          <div class="paper-teaser" role="img" aria-label="[TEASER FIGURE]"></div>
+          <div>
+            <p class="paper-kicker">Latest paper &middot; in progress</p>
+            <h2 class="paper-title" id="paper-title">[PAPER TITLE]</h2>
+            <p class="paper-meta">Kent Nakai &middot; [MONTH] 2026</p>
+            <p class="paper-summary">[ONE OR TWO SENTENCES: THE QUESTION, WHAT I TRIED, WHAT I FOUND]</p>
+            <p class="paper-links">PDF coming soon</p>
+          </div>
+        </article>
+        -->
       </section>
     </main>
   </div>
