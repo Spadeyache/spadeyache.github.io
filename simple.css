@@ -77,6 +77,9 @@ video:focus-visible {
 }
 
 .site-nav a[aria-current="page"] { color: var(--link-hover); }
+/* A nav item with no link (the résumé, for now): looks the same, does nothing. */
+.site-nav a:not([href]),
+.site-nav a:not([href]):hover { color: var(--text); text-decoration: underline; cursor: default; }
 
 /* Shared type */
 
@@ -708,6 +711,21 @@ video:focus-visible {
   color: var(--secondary);
   font-size: 19px;
 }
+
+.reveal-email {
+  padding: 0;
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.reveal-email:hover { color: var(--link-hover); }
+
+.contact-address { font-weight: 600; }
 
 .contact-email span {
   color: var(--text);

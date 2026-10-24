@@ -221,6 +221,19 @@
     }).catch(() => notesFailed(article.querySelector('[data-note-body]')));
   }
 
+  // Contact: the address is never in the HTML. It is put together from
+  // reversed parts only when someone asks for it, so harvesters find nothing.
+  document.querySelectorAll('.reveal-email').forEach((button) => {
+    button.addEventListener('click', () => {
+      const flip = (s) => [...s].reverse().join('');
+      const address = `${flip(button.dataset.u)}@${flip(button.dataset.d)}`;
+      const link = el('a', 'contact-address', address);
+      link.href = `mailto:${address}`;
+      button.replaceWith(link);
+      link.focus();
+    });
+  });
+
   // Home: short explainer loops play silently, unless motion is reduced.
   document.querySelectorAll('[data-loop-video]').forEach((video) => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

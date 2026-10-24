@@ -3,13 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="tdm-reservation" content="1">
   <meta name="description" content="Contact Kent Nakai about robotics, research, and opportunities.">
   <meta name="robots" content="noindex">
   <title>Kent Nakai &mdash; Contact</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="simple.css?v=20261024-contact-links">
+  <link rel="stylesheet" href="simple.css?v=20261024-resume-off">
 </head>
 <body>
   <div class="wrap">
@@ -18,7 +21,7 @@
       <nav class="site-nav" aria-label="Primary">
         <a href="notes.html">Notes</a>
         <a href="contact.html" aria-current="page">Contact</a>
-        <a href="media/Kent-Nakai-Resume.pdf" download>R&eacute;sum&eacute; &darr;</a>
+        <a>R&eacute;sum&eacute; &darr;</a><!-- Résumé download off for now -->
       </nav>
     </header>
 
@@ -26,7 +29,7 @@
       <section class="page-intro" aria-labelledby="contact-headline">
         <p class="label">Contact</p>
         <h1 class="headline" id="contact-headline">Let&rsquo;s share insights, whatever your field.</h1>
-        <p class="contact-email">Email: <span>kn2847 [at] nyu [dot] edu</span></p>
+        <p class="contact-email">Email: <button type="button" class="reveal-email" data-u="7482nk" data-d="ude.uyn">Show email</button></p>
         <p class="contact-links">
           <a href="https://github.com/Spadeyache" target="_blank" rel="me noopener">GitHub</a>
           <a href="https://www.linkedin.com/in/kent-nakai/" target="_blank" rel="me noopener">LinkedIn</a>
@@ -35,5 +38,6 @@
       </section>
     </main>
   </div>
+  <script src="site.js?v=20261024-secure"></script>
 </body>
 </html>
