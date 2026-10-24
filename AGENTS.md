@@ -27,7 +27,6 @@ Use progressive disclosure. The home page tells the clearest research story; det
 - `robot.html`: deeper explanation of the robot (electronics, diagrams). Linked from the robot photo on the landing page.
 - `contact.html`: contact page.
 - `simple.css` + `site.js`: the active shared styles and behavior.
-- `index.archive.html`, `styles.css`, and `script.js`: older design work. Do not use or edit them unless the task explicitly asks to restore something from that version.
 
 ## Writing
 

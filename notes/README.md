@@ -52,3 +52,6 @@ A `.mp4` in that syntax becomes a video.
 
 Notes load with fetch, so double-clicking the HTML file won't show them.
 Run `python3 -m http.server` in the site folder and open http://localhost:8000.
+
+After publishing a note (removing `draft: true`), run `python3 tools/make-sitemap.py`
+so Google finds it.
