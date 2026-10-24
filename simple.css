@@ -715,6 +715,14 @@ video:focus-visible {
   white-space: nowrap;
 }
 
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 16px 0 0;
+  font-size: 19px;
+}
+
 .robot-figure { margin: 64px 0 0; padding-bottom: 112px; }
 
 .robot-figure img {
