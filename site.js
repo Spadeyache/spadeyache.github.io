@@ -94,18 +94,29 @@
     target.replaceChildren(el('p', 'todo', 'Notes could not load. To preview locally, run "python3 -m http.server" in the site folder and open http://localhost:8000.'));
   };
 
-  // Home: timeline rows, one open at a time.
+  // Home: timeline rows, one open at a time. A mouse resting on a row for
+  // 0.75s opens it too; passing over on the way elsewhere does nothing.
   const rows = Array.from(document.querySelectorAll('.timeline button'));
+  const setOpen = (button) => {
+    rows.forEach((other) => {
+      const isThis = other === button;
+      other.setAttribute('aria-expanded', String(isThis));
+      other.querySelector('.sign').textContent = isThis ? '−' : '+';
+      document.getElementById(other.getAttribute('aria-controls')).classList.toggle('is-open', isThis);
+    });
+  };
+  let hoverTimer = null;
   rows.forEach((button) => {
     button.addEventListener('click', () => {
-      const opening = button.getAttribute('aria-expanded') !== 'true';
-      rows.forEach((other) => {
-        const isThis = other === button && opening;
-        other.setAttribute('aria-expanded', String(isThis));
-        other.querySelector('.sign').textContent = isThis ? '−' : '+';
-        document.getElementById(other.getAttribute('aria-controls')).classList.toggle('is-open', isThis);
-      });
+      clearTimeout(hoverTimer);
+      setOpen(button.getAttribute('aria-expanded') === 'true' ? null : button);
     });
+    button.addEventListener('pointerenter', (event) => {
+      if (event.pointerType !== 'mouse' || button.getAttribute('aria-expanded') === 'true') return;
+      clearTimeout(hoverTimer);
+      hoverTimer = setTimeout(() => setOpen(button), 750);
+    });
+    button.addEventListener('pointerleave', () => clearTimeout(hoverTimer));
   });
 
   // Home: note count.
